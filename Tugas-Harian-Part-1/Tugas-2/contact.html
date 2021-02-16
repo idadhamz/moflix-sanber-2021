@@ -29,7 +29,7 @@
             <h1 class="h1_header">Kirimkan Pesan</h1>
         </div>
         <div class="div_section">
-            <form>
+            <form action="" method="POST">
                 <p>
                     <label for="nama">Nama </label>
                     <input type="text" id="nama" name="nama" placeholder="Masukkan nama anda..." />
@@ -44,7 +44,7 @@
                     <input type="radio" id="pria" name="pria" value="pria" />
                     <label for="pria">Laki-Laki</label>
                     <input type="radio" id="wanita" name="wanita" value="wanita" />
-                    <label for="pria">Perempuan</label>
+                    <label for="wanita">Perempuan</label>
                 </p>
                 <p>
                     <label for="pesan">Pesan Anda </label>
@@ -56,7 +56,8 @@
                     border: none; 
                     background-color: gray; 
                     color: white;
-                    padding: 7px 10px; " />
+                    padding: 7px 10px;
+                    cursor: pointer; " />
                 </p>
             </form>
         </div>

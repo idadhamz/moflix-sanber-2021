@@ -1,5 +1,5 @@
 * {
-    font-family: 'Slabo';
+    font-family: 'Slabo 27px', serif;
 }
 
 body {
@@ -61,7 +61,7 @@ section > h1 {
     margin: 2rem 0px;
 
     font-weight: bold;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 section > #article-list > div {
