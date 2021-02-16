@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link href="public/css/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div style="padding: 10px;">
+            <a href="index.html" style="font-size: 14px;">Kembali Ke Index</a>
+        </div>
+    </header>
+    <section>
+        <div class="div_header">
+            <h1 class="h1_header">Hubungi Kami</h1>
+        </div>
+        <div class="div_section">
+            <ol>
+                <li><span>Kantor :</span> Jalan Semangka II</li>
+                <li><span>Nomor Telepon :</span> 0217-9187-676</li>
+                <li><span>Email :</span> semangka@gmail.com</li>
+            </ol>
+        </div>
+        <div class="div_header">
+            <h1 class="h1_header">Kirimkan Pesan</h1>
+        </div>
+        <div class="div_section">
+            <form>
+                <p>
+                    <label for="nama">Nama </label>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan nama anda..." />
+                </p>
+                <p>
+                    <label for="email">Email </label>
+                    <input type="email" id="email" name="email" placeholder="Masukkan email anda..." />
+                </p>
+                <p>
+                    <label for="jenis_kelamin">Jenis Kelamin </label>
+
+                    <input type="radio" id="pria" name="pria" value="pria" />
+                    <label for="pria">Laki-Laki</label>
+                    <input type="radio" id="wanita" name="wanita" value="wanita" />
+                    <label for="pria">Perempuan</label>
+                </p>
+                <p>
+                    <label for="pesan">Pesan Anda </label>
+                    <textarea type="pesan" id="pesan" name="pesan"></textarea>
+                </p>
+                <p>
+                    <input type="submit" class="submit-button" value="Kirim" 
+                    style="width: 100px; 
+                    border: none; 
+                    background-color: gray; 
+                    color: white;
+                    padding: 7px 10px; " />
+                </p>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,130 @@
+* {
+    font-family: 'Slabo';
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../images/pattern.jpg');
+}
+
+/* Halaman Index */
+
+header {
+    width: 100%;
+    height: auto;
+    padding: 10px 0px;
+    background-color: #fff;
+    
+    display: flex;
+    flex-direction: row;
+}
+
+header > img {
+    justify-content: flex-start;
+}
+
+header > nav {
+    width: 100%;
+    height: auto;
+    margin: 0px 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+header > nav > ul {
+    list-style-type: none;
+    margin: 0;
+
+    display: flex;
+    flex-direction: row;
+}
+
+header > nav > ul > a {
+    margin: 0px 5px;
+    font-size: 14px;
+}
+
+section {
+    width: 80%;
+    height: auto;
+    padding: 2rem;
+    
+    background-color: #fff;
+    margin: 2rem auto;
+}
+
+section > h1 {
+    text-align: center;
+    margin: 2rem 0px;
+
+    font-weight: bold;
+    font-size: 20px;
+}
+
+section > #article-list > div {
+    margin: 40px 0px;
+    border-bottom: 1.5px solid gray;
+}
+
+section > #article-list > div > a {
+    text-decoration: none;
+    
+    font-size: 16px;
+}
+
+section > #article-list > div > p {
+    font-size: 14px;
+}
+
+footer {
+    width: 100%;
+    height: auto;
+
+    padding: 5px 0px;
+    background-color: #000;
+}
+
+footer > h5 {
+    text-align: center;
+    
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* End of Halaman Index */
+
+.div_header {
+    width: 100%;
+}
+
+.div_header > .h1_header {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+}
+
+section > .div_section > ol > li {
+    font-size: 18px;
+}
+
+section > .div_section > ol > li > span {
+    font-weight: bold;
+}
+
+section > .div_section > form > p {
+    margin: 1.5rem 0px;
+    padding-left: 2rem;
+    font-size: 16px;
+    width: 100%;
+}
+
+section > .div_section > form > p > label {
+    width: 125px;
+    padding-right: 20px;
+    display: inline-block;
+    font-weight: bold;
+}
