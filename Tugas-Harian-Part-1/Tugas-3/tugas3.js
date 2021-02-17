@@ -45,106 +45,116 @@ console.log('Kata Kelima: ' + kataKelima);
 console.log("------------");
 
 // Jawaban Soal 4
-var nilai;
+var nilai = 75;
 
-function cekNilai(nilai){
-    var index;
-    if(nilai >= 80){
-        index = 'Nilai Index anda adalah A';
-    }else if(nilai >= 70 && nilai < 80){
-        index = 'Nilai Index anda adalah B';
-    }else if(nilai >= 60 && nilai < 70){
-        index = 'Nilai Index anda adalah C';
-    }else if(nilai >= 50 && nilai < 60){
-        index = 'Nilai Index anda adalah D';
-    }else if(nilai < 50){
-        index = 'Nilai Index anda adalah E';
-    }
+// function cekNilai(nilai){
+//     var index;
+//     if(nilai >= 80){
+//         index = 'Nilai Index anda adalah A';
+//     }else if(nilai >= 70 && nilai < 80){
+//         index = 'Nilai Index anda adalah B';
+//     }else if(nilai >= 60 && nilai < 70){
+//         index = 'Nilai Index anda adalah C';
+//     }else if(nilai >= 50 && nilai < 60){
+//         index = 'Nilai Index anda adalah D';
+//     }else if(nilai < 50){
+//         index = 'Nilai Index anda adalah E';
+//     }
     
-    return index;
+//     return index;
+// }
+
+var index;
+if(nilai >= 80){
+    index = 'Nilai Index anda adalah A';
+}else if(nilai >= 70 && nilai < 80){
+    index = 'Nilai Index anda adalah B';
+}else if(nilai >= 60 && nilai < 70){
+    index = 'Nilai Index anda adalah C';
+}else if(nilai >= 50 && nilai < 60){
+    index = 'Nilai Index anda adalah D';
+}else if(nilai < 50){
+    index = 'Nilai Index anda adalah E';
 }
 
-console.log(cekNilai(75));
+console.log(index);
 console.log("------------");
 
 // Jawaban Soal 5
-var tanggal;
-var bulan;
-var tahun;
+var tanggal = 1;
+var bulan = 7;
+var tahun = 1999;
 
-function cekTanggalLahir(tanggal, bulan, tahun){
-    var namaBulan = '';
+var namaBulan = '';
 
-    switch(bulan){
-        case 1: 
-        {
-            namaBulan = 'Januari';
-            break;
-        }
-        case 2: 
-        {
-            namaBulan = 'Februari';
-            break;
-        }
-        case 3: 
-        {
-            namaBulan = 'Maret';
-            break;
-        }
-        case 4: 
-        {
-            namaBulan = 'April';
-            break;
-        }
-        case 5: 
-        {
-            namaBulan = 'Mei';
-            break;
-        }
-        case 6: 
-        {
-            namaBulan = 'Juni';
-            break;
-        }
-        case 7: 
-        {
-            namaBulan = 'Juli';
-            break;
-        }
-        case 8: 
-        {
-            namaBulan = 'Agustus';
-            break;
-        }
-        case 9: 
-        {
-            namaBulan = 'September';
-            break;
-        }
-        case 10: 
-        {
-            namaBulan = 'Oktober';
-            break;
-        }
-        case 11: 
-        {
-            namaBulan = 'November';
-            break;
-        }
-        case 12: 
-        {
-            namaBulan = 'Desember';
-            break;
-        }
-        default:
-        {
-            namaBulan = 'Tidak ada';
-            break;
-        }
+switch(bulan){
+    case 1: 
+    {
+        namaBulan = 'Januari';
+        break;
     }
-
-    var tanggalLahir = tanggal + " " + namaBulan + " " + tahun;
-    return "Tanggal Lahir anda adalah :  " + tanggalLahir;
+    case 2: 
+    {
+        namaBulan = 'Februari';
+        break;
+    }
+    case 3: 
+    {
+        namaBulan = 'Maret';
+        break;
+    }
+    case 4: 
+    {
+        namaBulan = 'April';
+        break;
+    }
+    case 5: 
+    {
+        namaBulan = 'Mei';
+        break;
+    }
+    case 6: 
+    {
+        namaBulan = 'Juni';
+        break;
+    }
+    case 7: 
+    {
+        namaBulan = 'Juli';
+        break;
+    }
+    case 8: 
+    {
+        namaBulan = 'Agustus';
+        break;
+    }
+    case 9: 
+    {
+        namaBulan = 'September';
+        break;
+    }
+    case 10: 
+    {
+        namaBulan = 'Oktober';
+        break;
+    }
+    case 11: 
+    {
+        namaBulan = 'November';
+        break;
+    }
+    case 12: 
+    {
+        namaBulan = 'Desember';
+        break;
+    }
+        default:
+    {
+        namaBulan = 'Tidak ada';
+        break;
+    }
 }
 
-console.log(cekTanggalLahir(1, 7, 1999));
+var tanggalLahir = tanggal + " " + namaBulan + " " + tahun;
+
+console.log(tanggalLahir);
