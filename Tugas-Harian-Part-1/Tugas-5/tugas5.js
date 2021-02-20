@@ -20,14 +20,19 @@ console.log("Hasil kali diatas adalah = " + hasilKali);
 console.log("------------");
 
 // Jawaban Soal 3
-var name = "John";
-var age = 30;
-var address = "Jalan belum jadi";
-var hobby = "Gaming";
+var name;
+var age;
+var address;
+var hobby;
 
 function introduce(name, age, address, hobby){
     return "Nama saya " + name + ", umur saya " + age + " tahun, alamat saya di " + address + ", dan saya punya hobby yaitu " + hobby + "!";
 }
+
+name = "John";
+age = 30;
+address = "Jalan belum jadi";
+hobby = "Gaming";
 
 var perkenalan = introduce(name, age, address, hobby)
 console.log(perkenalan) // Menampilkan "Nama saya John, umur saya 30 tahun, alamat saya di Jalan belum jadi, dan saya punya hobby yaitu Gaming!"
@@ -37,10 +42,10 @@ console.log("------------");
 var arrayDaftarPeserta = ["Asep", "laki-laki", "baca buku" , 1992];
 
 var objectDataPeserta = {
-    name: "Asep",
-    gender: "laki-laki",
-    hobby: "baca buku",
-    year_birth: 1992
+    name: arrayDaftarPeserta[0],
+    gender: arrayDaftarPeserta[1],
+    hobby: arrayDaftarPeserta[2],
+    year_birth: arrayDaftarPeserta[3]
 };
 
 console.log(objectDataPeserta);
