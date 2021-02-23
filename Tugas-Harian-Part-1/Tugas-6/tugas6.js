@@ -68,8 +68,8 @@ const actor = {
     spell: "Vimulus Renderus!!!"
 }
 
-const {firstName, lastName, destination, occupation} = actor;
-console.log(firstName, lastName, destination, occupation);
+const {firstName, lastName, destination, occupation, spell} = actor;
+console.log(firstName, lastName, destination, occupation, spell);
 console.log("------------");
 
 // Jawaban Soal 5
