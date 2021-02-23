@@ -4,59 +4,72 @@ console.log('----SOAL 1----')
 console.log('----RELEASE 0----')
 
 class Animal {
-  constructor(name, legs = 4, cold_blooded = false) {
+  constructor(name, legs) {
     this._name = name
     this._legs = legs
-    this._cold_blooded = cold_blooded
+    this._cold_blooded = false
   }
 
   get name() {
     return this._name
   }
 
-  set name(x) {
-    this._name = x
+  set name(value) {
+    this._name = value
+  }
+
+  get legs() {
+    return this._legs
+  }
+
+  set legs(value) {
+    this._legs = value
   }
 }
 
 var sheep = new Animal('shaun')
+sheep.legs = 4
 
 console.log(sheep.name)
-console.log(sheep._legs)
+console.log(sheep.legs)
 console.log(sheep._cold_blooded)
 
 console.log('----RELEASE 1----')
 
 class Ape extends Animal {
-  constructor(name, legs = 2) {
-    super()
-    this._name = name
+  constructor(name, legs) {
+    super(name)
     this._legs = legs
   }
 
   yell = () => {
-    console.log(`Auooo dan mempunyai kaki ${this._legs}`)
-  }
-}
-
-class Frog extends Animal {
-  constructor(name, legs) {
-    super(legs)
-    this._name = name
-  }
-
-  jump = () => {
-    console.log(`hop hop dengan jumlah kaki ${this._legs}`)
+    console.log(`Auooo`)
   }
 }
 
 var sungokong = new Ape('kera sakti')
+sungokong._legs = 2
+
 sungokong.yell()
 console.log(sungokong.name)
+console.log(sungokong._legs)
+
+class Frog extends Animal {
+  constructor(name, legs) {
+    super(name, legs)
+  }
+
+  jump = () => {
+    console.log(`hop hop`)
+  }
+}
 
 var kodok = new Frog('buduk')
+kodok.legs = 4
+
 kodok.jump()
 console.log(kodok.name)
+console.log(kodok.legs)
 
 // Jawaban Soal 2
 console.log('----SOAL 2----')
@@ -64,6 +77,7 @@ console.log('----SOAL 2----')
 class Clock {
   constructor({ template }) {
     this._template = template
+    this.render = this.render.bind(this)
   }
 
   render() {
@@ -92,7 +106,9 @@ class Clock {
 
   start() {
     this.render()
-    this.timer = setInterval(() => this.render(), 1000)
+    // this.timer = setInterval(() => this.render(), 1000)
+    // this.timer = setInterval(this.render.bind(this), 1000)
+    this.timer = setInterval(this.render, 1000)
   }
 }
 
