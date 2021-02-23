@@ -40,7 +40,7 @@ class Ape extends Animal {
 }
 
 class Frog extends Animal {
-  constructor(legs, name) {
+  constructor(name, legs) {
     super(legs)
     this._name = name
   }
@@ -52,9 +52,11 @@ class Frog extends Animal {
 
 var sungokong = new Ape('kera sakti')
 sungokong.yell()
+console.log(sungokong.name)
 
 var kodok = new Frog('buduk')
 kodok.jump()
+console.log(kodok.name)
 
 // Jawaban Soal 2
 console.log('----SOAL 2----')
