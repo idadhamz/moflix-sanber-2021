@@ -15,7 +15,7 @@ var initTime = 10000
 function execute(initTime, listBook, i = 0) {
   readBooks(initTime, listBook[i], function (readBooks) {
     if (readBooks !== 0) {
-      execute(readBooks, listBook, i + 1)
+      if (books.length - 1 !== i) execute(readBooks, listBook, i + 1)
     }
   })
 }
