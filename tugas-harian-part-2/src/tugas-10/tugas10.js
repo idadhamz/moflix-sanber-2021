@@ -3,7 +3,7 @@ import './tugas10.css'
 
 import DataTable from './components/dataTable'
 
-import DataHargaBuah from '../data/dataHargaBuah'
+import DataHargaBuah from './data/dataHargaBuah'
 
 function tugas10() {
   return (
@@ -27,7 +27,7 @@ function tugas10() {
                   <DataTable
                     nama={data.nama}
                     harga={data.harga}
-                    berat={data.berat}
+                    berat={data.berat / 1000}
                   />
                 </tr>
               )

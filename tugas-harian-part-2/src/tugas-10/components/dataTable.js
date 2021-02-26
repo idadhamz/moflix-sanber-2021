@@ -5,7 +5,7 @@ function dataTable(props) {
     <>
       <td>{props.nama}</td>
       <td>{props.harga}</td>
-      <td>{props.berat}</td>
+      <td>{props.berat} kg</td>
     </>
   )
 }
