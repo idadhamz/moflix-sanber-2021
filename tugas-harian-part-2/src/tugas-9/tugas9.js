@@ -7,38 +7,38 @@ function tugas9() {
       <div>
         <h1>Form Pembelian Buah</h1>
       </div>
-      <div class="div_section">
+      <div className="div_section">
         <form action="/" method="POST">
           <p>
-            <label for="nama">Nama Pelanggan</label>
+            <label htmlFor="nama">Nama Pelanggan</label>
             <input type="text" id="nama" name="nama" />
           </p>
           <p>
-            <label for="list-item">Daftar Item </label>
+            <label htmlFor="list-item">Daftar Item </label>
 
             <div>
               <input type="checkbox" id="buah1" name="buah1" value="semangka" />
-              <label for="buah1"> Semangka</label>
+              <label htmlFor="buah1"> Semangka</label>
             </div>
             <div>
               <input type="checkbox" id="buah2" name="buah2" value="jeruk" />
-              <label for="buah2"> Jeruk</label>
+              <label htmlFor="buah2"> Jeruk</label>
             </div>
             <div>
               <input type="checkbox" id="buah3" name="buah3" value="nanas" />
-              <label for="buah3"> Nanas</label>
+              <label htmlFor="buah3"> Nanas</label>
             </div>
             <div>
               <input type="checkbox" id="buah4" name="buah4" value="salak" />
-              <label for="buah4"> Salak</label>
+              <label htmlFor="buah4"> Salak</label>
             </div>
             <div>
               <input type="checkbox" id="buah5" name="buah5" value="anggur" />
-              <label for="buah5"> Anggur</label>
+              <label htmlFor="buah5"> Anggur</label>
             </div>
           </p>
           <p>
-            <input type="submit" class="submit-button" value="Kirim" />
+            <input type="submit" className="submit-button" value="Kirim" />
           </p>
         </form>
       </div>

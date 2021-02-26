@@ -11,21 +11,25 @@ function tugas10() {
       <div>
         <h1>Tabel Harga Buah</h1>
       </div>
-      <div class="div_table">
+      <div className="div_table">
         <table>
           <thead>
-            <th>Nama</th>
-            <th>Harga</th>
-            <th>Buah</th>
+            <tr>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Buah</th>
+            </tr>
           </thead>
           <tbody>
-            {DataHargaBuah.map((data) => {
+            {DataHargaBuah.map((data, index) => {
               return (
-                <DataTable
-                  nama={data.nama}
-                  harga={data.harga}
-                  berat={data.berat}
-                />
+                <tr key={index}>
+                  <DataTable
+                    nama={data.nama}
+                    harga={data.harga}
+                    berat={data.berat}
+                  />
+                </tr>
               )
             })}
           </tbody>
