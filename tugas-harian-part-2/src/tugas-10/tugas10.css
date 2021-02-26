@@ -1,0 +1,31 @@
+.div_table {
+  margin: 30px;
+}
+
+table,
+thead,
+tbody {
+  width: 100%;
+  border: 1.5px solid black;
+}
+
+table > thead {
+  background-color: gray;
+  color: black;
+  text-align: center;
+  font-size: 14px;
+}
+
+table > thead > th {
+  padding: 10px;
+}
+
+table > tbody {
+  background-color: coral;
+  color: black;
+  font-size: 14px;
+}
+
+table > tbody > tr > td {
+  padding: 5px;
+}
