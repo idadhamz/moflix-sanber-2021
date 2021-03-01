@@ -1,0 +1,19 @@
+.div_time {
+  margin: 5% 30px;
+}
+
+.div_time h1 {
+  font-size: 36px;
+  font-weight: bold;
+
+  margin: 15px;
+  display: inline-block;
+}
+
+.div_time h1.time {
+  float: left;
+}
+
+.div_time h1.counter {
+  float: right;
+}

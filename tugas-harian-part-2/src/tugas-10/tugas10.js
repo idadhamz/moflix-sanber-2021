@@ -5,13 +5,13 @@ import DataTable from './components/dataTable'
 
 import DataHargaBuah from './data/dataHargaBuah'
 
-function tugas10() {
+function Tugas10() {
   return (
     <div>
-      <div>
-        <h1>Tabel Harga Buah</h1>
-      </div>
       <div className="div_table">
+        <div>
+          <h1>Tabel Harga Buah</h1>
+        </div>
         <table>
           <thead>
             <tr>
@@ -39,4 +39,4 @@ function tugas10() {
   )
 }
 
-export default tugas10
+export default Tugas10

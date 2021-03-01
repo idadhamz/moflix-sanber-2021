@@ -1,5 +1,7 @@
 .App > div > .div_section {
-  margin: auto 15%;
+  padding: 5%;
+  border: 2px solid black;
+  border-radius: 10px;
 }
 
 .App > div > .div_section > form > p {

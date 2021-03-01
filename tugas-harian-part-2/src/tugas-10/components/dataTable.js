@@ -1,6 +1,6 @@
 import React from 'react'
 
-function dataTable(props) {
+function DataTable(props) {
   return (
     <>
       <td>{props.nama}</td>
@@ -10,4 +10,4 @@ function dataTable(props) {
   )
 }
 
-export default dataTable
+export default DataTable

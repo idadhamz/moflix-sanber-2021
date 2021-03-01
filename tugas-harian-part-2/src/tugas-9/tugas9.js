@@ -1,13 +1,13 @@
 import React from 'react'
 import './tugas9.css'
 
-function tugas9() {
+function Tugas9() {
   return (
     <div>
-      <div>
-        <h1>Form Pembelian Buah</h1>
-      </div>
       <div className="div_section">
+        <div>
+          <h1>Form Pembelian Buah</h1>
+        </div>
         <form action="/" method="POST">
           <p>
             <label htmlFor="nama">Nama Pelanggan</label>
@@ -46,4 +46,4 @@ function tugas9() {
   )
 }
 
-export default tugas9
+export default Tugas9
