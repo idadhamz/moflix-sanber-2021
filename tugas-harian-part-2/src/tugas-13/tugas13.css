@@ -1,0 +1,83 @@
+.div_table {
+  padding: 5% 0;
+}
+
+table,
+thead,
+tbody {
+  width: 100%;
+  border: none;
+}
+
+table > thead {
+  background-color: gray;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+}
+
+table > thead > th {
+  padding: 10px;
+}
+
+table > tbody {
+  background-color: white;
+  color: black;
+  font-size: 16px;
+}
+
+table > tbody > tr > td {
+  border-bottom: 1px solid black;
+}
+
+button {
+  cursor: pointer;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.buttonSubmit {
+  background-color: blue;
+  border: none;
+  padding: 7px 12px;
+}
+
+.buttonEdit {
+  background-color: orange;
+  border: none;
+  padding: 7px 12px;
+}
+
+.buttonDelete {
+  background-color: red;
+  border: none;
+  padding: 7px 12px;
+}
+
+.div_form {
+  width: auto;
+  height: auto;
+
+  border: 1px solid black;
+}
+
+.div_form > form {
+  padding: 50px;
+}
+
+.div_form > form > div {
+  padding: 10px;
+}
+
+.div_form > form > div > label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.div_form > form > div > input,
+button {
+  float: right;
+}
