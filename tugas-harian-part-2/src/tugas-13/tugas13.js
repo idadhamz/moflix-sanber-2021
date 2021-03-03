@@ -14,15 +14,17 @@ const Tugas13 = () => {
   const [currentId, setCurrentId] = useState(null)
 
   useEffect(() => {
-    axios
-      .get(`http://backendexample.sanbercloud.com/api/fruits`)
-      .then((res) => {
-        let data = res.data
-        setDataHargaBuah(data)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+    if (dataHargaBuah === null) {
+      axios
+        .get(`http://backendexample.sanbercloud.com/api/fruits`)
+        .then((res) => {
+          let data = res.data
+          setDataHargaBuah(data)
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    }
   }, [dataHargaBuah])
 
   const handleChange = (event) => {
@@ -51,6 +53,10 @@ const Tugas13 = () => {
       .then((res) => {
         console.log(res.data)
         alert('Data Berhasil Dihapus')
+        let newDataHargaBuah = dataHargaBuah.filter((el) => {
+          return el.id !== id
+        })
+        setDataHargaBuah(newDataHargaBuah)
       })
       .catch((e) => {
         console.log(e)
@@ -87,8 +93,7 @@ const Tugas13 = () => {
         .then((res) => {
           console.log(res)
           console.log(res.data)
-
-          setCurrentDataHargaBuah({ name: '', price: '', weight: 0 })
+          setDataHargaBuah(null)
 
           alert('Data Berhasil Diedit')
         })
@@ -101,106 +106,110 @@ const Tugas13 = () => {
   }
 
   return (
-    <div>
-      <div className="div_table">
+    <>
+      {dataHargaBuah !== null && (
         <div>
-          <h1>Tabel Harga Buah</h1>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama</th>
-              <th>Harga</th>
-              <th>Buah</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dataHargaBuah === null ? (
-              <tr>
-                <td colSpan="6" style={{ textAlign: 'center' }}>
-                  Tidak ada data
-                </td>
-              </tr>
-            ) : (
-              dataHargaBuah.map((data, key) => {
-                return (
-                  <tr key={key}>
-                    <DataTable
-                      no={key}
-                      nama={data.name}
-                      harga={data.price}
-                      berat={data.weight / 1000}
-                    />
-                    <td style={{ width: '125px', textAlign: 'center' }}>
-                      <button
-                        className="buttonDelete"
-                        onClick={() => handleDelete(data.id)}
-                      >
-                        Delete
-                      </button>
-                      <button
-                        className="buttonEdit"
-                        style={{ margin: '0 5px' }}
-                        onClick={() => handleEdit(data.id)}
-                      >
-                        Edit
-                      </button>
+          <div className="div_table">
+            <div>
+              <h1>Tabel Harga Buah</h1>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Harga</th>
+                  <th>Buah</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dataHargaBuah.length === 0 ? (
+                  <tr>
+                    <td colSpan="6" style={{ textAlign: 'center' }}>
+                      Tidak ada data
                     </td>
                   </tr>
-                )
-              })
-            )}
-          </tbody>
-        </table>
+                ) : (
+                  dataHargaBuah.map((data, index) => {
+                    return (
+                      <tr key={index}>
+                        <DataTable
+                          no={index}
+                          nama={data.name}
+                          harga={data.price}
+                          berat={data.weight / 1000}
+                        />
+                        <td style={{ width: '125px', textAlign: 'center' }}>
+                          <button
+                            className="buttonDelete"
+                            onClick={() => handleDelete(data.id)}
+                          >
+                            Delete
+                          </button>
+                          <button
+                            className="buttonEdit"
+                            style={{ margin: '0 5px' }}
+                            onClick={() => handleEdit(data.id)}
+                          >
+                            Edit
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  })
+                )}
+              </tbody>
+            </table>
 
-        <div>
-          <h1>Form Daftar Harga Buah</h1>
-        </div>
+            <div>
+              <h1>Form Daftar Harga Buah</h1>
+            </div>
 
-        <div className="div_form">
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>Nama: </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                autoComplete="off"
-                value={currentDataHargaBuah.name}
-                onChange={handleChange}
-              ></input>
+            <div className="div_form">
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <label>Nama: </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    autoComplete="off"
+                    value={currentDataHargaBuah.name}
+                    onChange={handleChange}
+                  ></input>
+                </div>
+                <div>
+                  <label>Harga: </label>
+                  <input
+                    type="text"
+                    id="price"
+                    name="price"
+                    autoComplete="off"
+                    value={currentDataHargaBuah.price}
+                    onChange={handleChange}
+                  ></input>
+                </div>
+                <div>
+                  <label>Berat (dalam gram): </label>
+                  <input
+                    type="number"
+                    id="weight"
+                    name="weight"
+                    autoComplete="off"
+                    value={currentDataHargaBuah.weight}
+                    onChange={handleChange}
+                  ></input>
+                </div>
+                <div>
+                  <button className="buttonSubmit">Submit</button>
+                </div>
+              </form>
             </div>
-            <div>
-              <label>Harga: </label>
-              <input
-                type="text"
-                id="price"
-                name="price"
-                autoComplete="off"
-                value={currentDataHargaBuah.price}
-                onChange={handleChange}
-              ></input>
-            </div>
-            <div>
-              <label>Berat (dalam gram): </label>
-              <input
-                type="number"
-                id="weight"
-                name="weight"
-                autoComplete="off"
-                value={currentDataHargaBuah.weight}
-                onChange={handleChange}
-              ></input>
-            </div>
-            <div>
-              <button className="buttonSubmit">Submit</button>
-            </div>
-          </form>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   )
 }
 
