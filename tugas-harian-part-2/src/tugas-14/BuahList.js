@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { BuahContext } from './BuahContext'
 import axios from 'axios'
 
@@ -8,6 +8,11 @@ const BuahList = () => {
   const [dataHargaBuah, setDataHargaBuah, idBuah, setIdBuah] = useContext(
     BuahContext,
   )
+
+  // const [dataHargaBuahState, idBuahState] = useContext(BuahContext)
+
+  // const [dataHargaBuah, setDataHargaBuah] = dataHargaBuahState
+  // const [idBuah, setIdBuah] = idBuahState
 
   useEffect(() => {
     if (dataHargaBuah === null) {
@@ -25,33 +30,28 @@ const BuahList = () => {
 
   const handleEdit = (event) => {
     let idDataBuah = parseInt(event.target.value)
-
-    axios
-      .get(`http://backendexample.sanbercloud.com/api/fruits/${idDataBuah}`)
-      .then((res) => {
-        let dataBuah = res.data
-        setIdBuah(idDataBuah)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+    setIdBuah(idDataBuah)
   }
 
   const handleDelete = (event) => {
     let idDataBuah = parseInt(event.target.value)
 
-    let newdataHargaBuah = dataHargaBuah.filter((el) => el.id !== idDataBuah)
-    setDataHargaBuah([...newdataHargaBuah])
-
     axios
       .delete(`http://backendexample.sanbercloud.com/api/fruits/${idDataBuah}`)
       .then((res) => {
+        let newdataHargaBuah = dataHargaBuah.filter(
+          (el) => el.id !== idDataBuah,
+        )
+        setDataHargaBuah([...newdataHargaBuah])
         console.log(res.data)
         alert('Data Berhasil Dihapus')
       })
       .catch((e) => {
         console.log(e)
       })
+    if (idBuah === idDataBuah) {
+      setIdBuah(null)
+    }
   }
 
   return (
