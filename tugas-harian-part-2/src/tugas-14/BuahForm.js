@@ -3,9 +3,13 @@ import { BuahContext } from './BuahContext'
 import axios from 'axios'
 
 const BuahForm = () => {
-  const [dataHargaBuah, setDataHargaBuah, idBuah, setIdBuah] = useContext(
-    BuahContext,
-  )
+  // context
+  const { dataHargaBuahState, idBuahState } = useContext(BuahContext)
+
+  const [dataHargaBuah, setDataHargaBuah] = dataHargaBuahState
+  const [idBuah, setIdBuah] = idBuahState
+
+  // state
   const [currentDataHargaBuah, setCurrentDataHargaBuah] = useState({
     name: '',
     price: '',

@@ -5,14 +5,15 @@ import axios from 'axios'
 import DataTable from './components/dataTable'
 
 const BuahList = () => {
-  const [dataHargaBuah, setDataHargaBuah, idBuah, setIdBuah] = useContext(
-    BuahContext,
-  )
+  // context versi panjang
+  // const [dataHargaBuah, setDataHargaBuah, idBuah, setIdBuah] = useContext(
+  //   BuahContext,
+  // )
 
-  // const [dataHargaBuahState, idBuahState] = useContext(BuahContext)
+  const { dataHargaBuahState, idBuahState } = useContext(BuahContext)
 
-  // const [dataHargaBuah, setDataHargaBuah] = dataHargaBuahState
-  // const [idBuah, setIdBuah] = idBuahState
+  const [dataHargaBuah, setDataHargaBuah] = dataHargaBuahState
+  const [idBuah, setIdBuah] = idBuahState
 
   useEffect(() => {
     if (dataHargaBuah === null) {
