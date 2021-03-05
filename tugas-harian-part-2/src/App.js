@@ -1,23 +1,20 @@
+import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
 
-import Tugas9 from './tugas-9/tugas9'
-import Tugas10 from './tugas-10/tugas10'
-import Tugas11 from './tugas-11/tugas11'
-import Tugas12 from './tugas-12/tugas12'
-import Tugas13 from './tugas-13/tugas13'
-import Tugas14 from './tugas-14/tugas14'
+import { AppProvider } from './AppContext'
+import Nav from './Nav'
+import Routes from './Routes'
 
 function App() {
   return (
-    <div>
-      <div className="App">
-        {/* <Tugas9 />
-        <Tugas10 /> */}
-        {/* <Tugas12 /> */}
-        <Tugas14 />
-      </div>
-      {/* <Tugas11 start={100} /> */}
-    </div>
+    <AppProvider>
+      <Router>
+        <Nav />
+        <div className="App">
+          <Routes />
+        </div>
+      </Router>
+    </AppProvider>
   )
 }
 

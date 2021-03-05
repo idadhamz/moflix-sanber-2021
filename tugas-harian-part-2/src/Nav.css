@@ -1,0 +1,27 @@
+ul {
+  display: flex;
+  flex-direction: row;
+
+  padding: 25px;
+  margin: 0px;
+  background-color: blue;
+}
+
+ul li {
+  list-style: none;
+  margin-right: 10px;
+}
+
+ul li .link {
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 20px;
+
+  text-decoration: none;
+}
+
+ul li .link:hover {
+  background-color: white;
+  color: black;
+}
