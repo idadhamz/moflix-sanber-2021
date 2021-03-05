@@ -12,37 +12,37 @@ const Nav = () => {
     <>
       <ul style={{ backgroundColor: colorTheme }}>
         <li>
-          <Link to="/tugas9" className="link">
+          <Link to="/tugas9" className={'link' + (colorTheme ? 'color' : '')}>
             Tugas 9
           </Link>
         </li>
         <li>
-          <Link to="/tugas10" className="link">
+          <Link to="/tugas10" className={'link' + (colorTheme ? 'color' : '')}>
             Tugas 10
           </Link>
         </li>
         <li>
-          <Link to="/tugas11" className="link">
+          <Link to="/tugas11" className={'link' + (colorTheme ? 'color' : '')}>
             Tugas 11
           </Link>
         </li>
         <li>
-          <Link to="/tugas12" className="link">
+          <Link to="/tugas12" className={'link' + (colorTheme ? 'color' : '')}>
             Tugas 12
           </Link>
         </li>
         <li>
-          <Link to="/tugas13" className="link">
+          <Link to="/tugas13" className={'link' + (colorTheme ? 'color' : '')}>
             Tugas 13
           </Link>
         </li>
         <li>
-          <Link to="/tugas14" className="link">
+          <Link to="/tugas14" className={'link' + (colorTheme ? 'color' : '')}>
             Tugas 14
           </Link>
         </li>
         <li>
-          <Link to="/tugas15" className="link">
+          <Link to="/tugas15" className={'link' + (colorTheme ? 'color' : '')}>
             Tugas 15
           </Link>
         </li>

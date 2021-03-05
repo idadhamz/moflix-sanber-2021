@@ -24,7 +24,7 @@ const Tugas15 = () => {
           </button>
         ) : (
           <button className="btn-tugas15" onClick={handleChangeTheme}>
-            Back to Blue Theme
+            Change Navbar to Light Theme
           </button>
         )}
       </div>
