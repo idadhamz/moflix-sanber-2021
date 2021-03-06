@@ -160,6 +160,7 @@ const BooksList = () => {
           image_url,
         })
         .then((res) => {
+          alert('Data Berhasil Dibuat')
           setDataBuku([
             ...dataBuku,
             {
@@ -173,7 +174,6 @@ const BooksList = () => {
               image_url,
             },
           ])
-          alert('Data Berhasil Dibuat')
         })
         .catch((e) => {
           console.log(e)
@@ -192,10 +192,9 @@ const BooksList = () => {
         .then((res) => {
           console.log(res)
           console.log(res.data)
+          alert('Data Berhasil Diedit')
           setDataBuku(null)
           setIsLoading(true)
-
-          alert('Data Berhasil Diedit')
         })
         .catch((e) => {
           console.log(e)
@@ -270,7 +269,12 @@ const BooksList = () => {
                       <td>{data.review}</td>
                       <td>{data.release_year}</td>
                       <td>{data.totalPage}</td>
-                      <td>{data.price}</td>
+                      <td>
+                        {data.price.toLocaleString('id', {
+                          style: 'currency',
+                          currency: 'IDR',
+                        })}
+                      </td>
                       <td>
                         {data.image_url === null ? (
                           <span>Gambar Tidak Ada</span>

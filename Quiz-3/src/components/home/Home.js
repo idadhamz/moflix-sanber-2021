@@ -52,7 +52,13 @@ class home extends Component {
                     }}
                   >
                     <p>Tahun Terbit: {data.release_year}</p>
-                    <p>Harga: {data.price}</p>
+                    <p>
+                      Harga:{' '}
+                      {data.price.toLocaleString('id', {
+                        style: 'currency',
+                        currency: 'IDR',
+                      })}
+                    </p>
                     <p>Jumlah Halaman: {data.totalPage}</p>
                   </div>
                 </div>
