@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+
+import { AppContext } from '../AppContext'
 
 import Home from './home/Home'
 import About from './about/About'
@@ -7,6 +9,9 @@ import BooksList from './booksList/BooksList'
 import Login from './login/Login'
 
 const Routes = () => {
+  const { isLoggedState } = useContext(AppContext)
+  const [isLogged, setIsLogged] = isLoggedState
+
   return (
     <Switch>
       <Route
@@ -22,9 +27,7 @@ const Routes = () => {
       <Route path="/about">
         <About />
       </Route>
-      <Route path="/booksList">
-        <BooksList />
-      </Route>
+      <Route path="/booksList">{isLogged ? <BooksList /> : <Login />}</Route>
       <Route path="/login">
         <Login />
       </Route>
