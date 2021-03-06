@@ -1,0 +1,39 @@
+section {
+  width: 80%;
+  height: auto;
+  padding: 2rem;
+
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+section > h1 {
+  text-align: center;
+  margin: 2rem 0px;
+
+  font-weight: bold;
+  font-size: 24px;
+}
+
+section > .div-list-buku > .div-buku {
+  border-bottom: 1.5px solid gray;
+}
+
+section > .div-list-buku > .div-buku > h2 {
+  font-size: 20px;
+}
+
+section > .div-list-buku > .div-buku > .div-content-buku {
+  display: flex;
+  flex-direction: row;
+
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+section > .div-list-buku > .div-buku > .div-content-buku > img {
+  width: 40%;
+  height: auto;
+
+  object-fit: cover;
+}

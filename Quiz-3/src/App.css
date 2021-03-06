@@ -1,0 +1,9 @@
+* {
+  font-family: 'Slabo 27px', serif;
+}
+
+.App {
+  margin: 0;
+  padding: 0;
+  background: url('./assets/images/pattern.jpg');
+}
