@@ -1,0 +1,12 @@
+.section_about {
+  border: 1px solid black;
+}
+
+.section_about > .div_header > h1 {
+  font-size: 36px;
+}
+
+.section_about > .div_section > ol > li {
+  font-size: 16px;
+  margin: 10px 0;
+}

@@ -219,7 +219,7 @@ const BooksList = () => {
     )
 
   return (
-    <>
+    <div style={{ padding: '30px' }}>
       {dataBuku !== null && (
         <section>
           <div className="div_table">
@@ -408,7 +408,7 @@ const BooksList = () => {
           </div>
         </section>
       )}
-    </>
+    </div>
   )
 }
 

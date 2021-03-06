@@ -1,9 +1,10 @@
 import React from 'react'
+import './About.css'
 
 const About = () => {
   return (
-    <div>
-      <section>
+    <div style={{ padding: '30px' }}>
+      <section className="section_about">
         <div className="div_header">
           <h1 className="h1_header">
             Data Peserta Sanbercode Bootcamp Reactjs

@@ -5,10 +5,10 @@ import React, { useState, createContext } from 'react'
 export const AppContext = createContext()
 
 export const AppProvider = (props) => {
-  const [colorTheme, setColorTheme] = useState(null)
+  const [isLogged, setIsLogged] = useState(null)
 
   const valueState = {
-    colorThemeState: [colorTheme, setColorTheme],
+    isLoggedState: [isLogged, setIsLogged],
   }
 
   return (
