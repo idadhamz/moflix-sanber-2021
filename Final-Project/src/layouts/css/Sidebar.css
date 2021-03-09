@@ -1,0 +1,38 @@
+.div-sidebar {
+  width: 20%;
+  height: auto;
+  margin: 35px 20px;
+  border-radius: 5px;
+
+  background-color: #eee;
+}
+
+.div-content-sidebar > p {
+  font-size: 16px;
+}
+
+.div-content-sidebar > nav > ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.div-content-sidebar > nav > ul > li {
+  font-size: 14px;
+  margin: 5px 0;
+  padding: 10px 5px;
+  border-radius: 10px;
+
+  color: gray;
+}
+
+.div-content-sidebar > nav > ul > li > .link {
+  text-decoration: none;
+  font-weight: bold;
+
+  color: gray;
+}
+
+.div-content-sidebar > nav > ul > li:hover > .link {
+  color: #32325b;
+  text-decoration: underline;
+}
