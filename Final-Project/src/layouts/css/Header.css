@@ -57,7 +57,8 @@ header > nav > ul > div > li > .link {
   color: gray;
 }
 
-header > nav > ul > div > li:hover > .link {
+header > nav > ul > div > li:hover > .link,
+header > nav > ul > div > li > .link.active {
   color: #32325b;
   text-decoration: underline;
 }

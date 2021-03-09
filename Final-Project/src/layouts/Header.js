@@ -3,10 +3,12 @@ import './css/Header.css'
 
 import MovflixLogo from '../img/Movflix.png'
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Button } from 'antd'
 
 const Header = () => {
+  let location = useLocation()
+
   return (
     <>
       <header>
@@ -17,17 +19,31 @@ const Header = () => {
           <ul>
             <div>
               <li>
-                <Link to="/" className="link">
+                <Link
+                  exact
+                  to="/"
+                  className={location.pathname === '/' ? 'link active' : 'link'}
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/movies" className="link">
+                <Link
+                  to="/movies"
+                  className={
+                    location.pathname === '/movies' ? 'link active' : 'link'
+                  }
+                >
                   Movies
                 </Link>
               </li>
               <li>
-                <Link to="/games" className="link">
+                <Link
+                  to="/games"
+                  className={
+                    location.pathname === '/games' ? 'link active' : 'link'
+                  }
+                >
                   Games
                 </Link>
               </li>
