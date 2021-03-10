@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import './css/Section.css'
 
 import Login from '../pages/Login'
+import Register from '../pages/Register'
 import Home from '../pages/Home'
 import Movies from '../pages/movies/Movies'
 import DetailMovies from '../pages/movies/DetailMovies'
@@ -17,17 +18,11 @@ import { AppContext } from '../context/AppContext'
 const Section = () => {
   const [user] = useContext(AppContext)
 
-  const PrivateRoute = ({ user, ...props }) => {
-    if (user) {
-      return <Route {...props} />
-    } else {
-      return <Redirect to="/login" />
-    }
-  }
+  const PrivateRoute = ({ user, ...props }) =>
+    user ? <Route {...props} /> : <Redirect to="/login" />
 
-  const LoginRoute = ({ user, ...props }) => {
+  const LoginRoute = ({ user, ...props }) =>
     user ? <Redirect to="/" /> : <Route {...props} />
-  }
 
   return (
     <section>
@@ -38,6 +33,7 @@ const Section = () => {
         <Route exact path="/games" user={user} component={Games} />
         <Route exact path="/games/:id" user={user} component={DetailGames} />
         <LoginRoute exact path="/login" user={user} component={Login} />
+        <Route exact path="/register" user={user} component={Register} />
         <PrivateRoute
           exact
           path="/adminMovies"

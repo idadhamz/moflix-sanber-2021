@@ -9,20 +9,27 @@ import {
   Input,
   FormText,
 } from 'reactstrap'
-import './Login.css'
+import './Register.css'
 import axios from 'axios'
 
-import vectorMovie from '../img/vectorMovie.jpg'
 import { AppContext } from '../context/AppContext'
 
-const Login = () => {
+import vectorMovie from '../img/vectorMovie.jpg'
+
+const Register = () => {
   const [, setUser] = useContext(AppContext)
-  const [input, setInput] = useState({ email: '', password: '' })
+  const [input, setInput] = useState({
+    name: '',
+    email: '',
+    password: '',
+  })
 
   const handleSubmit = (event) => {
     event.preventDefault()
+
     axios
-      .post('https://backendexample.sanbersy.com/api/user-login', {
+      .post(`https://backendexample.sanbersy.com/api/register`, {
+        name: input.name,
         email: input.email,
         password: input.password,
       })
@@ -33,7 +40,7 @@ const Login = () => {
         setUser(currentUser)
         localStorage.setItem('user', JSON.stringify(currentUser))
 
-        alert('Login Berhasil')
+        alert('Register Berhasil')
       })
       .catch((err) => {
         alert(err)
@@ -44,6 +51,10 @@ const Login = () => {
     let value = event.target.value
     let name = event.target.name
     switch (name) {
+      case 'name': {
+        setInput({ ...input, name: value })
+        break
+      }
       case 'email': {
         setInput({ ...input, email: value })
         break
@@ -60,14 +71,29 @@ const Login = () => {
 
   return (
     <>
-      <div className="div-login">
+      <div className="div-register">
         <Row>
           <Col xs={12} md={6} lg={6}>
             <div>
-              <p className="p-masuk-akun">Masuk Akun Anda</p>
+              <p className="p-masuk-akun">Daftarkan Akun Anda</p>
             </div>
-            <div className="div-form-login">
+            <div className="div-form-register">
               <Form onSubmit={handleSubmit}>
+                <FormGroup className="form-group">
+                  <Label for="name">Nama Lengkap</Label>
+                  <Input
+                    type="text"
+                    name="name"
+                    id="name"
+                    onChange={handleChange}
+                    value={input.name}
+                    required
+                  />
+                  <FormText color="muted">
+                    Masukkan nama asli Anda, nama akan digunakan pada profile
+                    sistem.
+                  </FormText>
+                </FormGroup>
                 <FormGroup className="form-group">
                   <Label for="email">Email</Label>
                   <Input
@@ -102,7 +128,7 @@ const Login = () => {
                       border: 'none',
                     }}
                   >
-                    Masuk
+                    Lanjut
                   </Button>
                 </FormGroup>
               </Form>
@@ -137,4 +163,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register

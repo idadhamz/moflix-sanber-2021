@@ -32,7 +32,8 @@
   color: gray;
 }
 
-.div-content-sidebar > nav > ul > li:hover > .link {
+.div-content-sidebar > nav > ul > li:hover > .link,
+.div-content-sidebar > nav > ul > li > .link.active {
   color: #32325b;
   text-decoration: underline;
 }

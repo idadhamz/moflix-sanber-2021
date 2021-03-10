@@ -134,7 +134,10 @@ const Home = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <Link to={{ pathname: `/movies/${item.id}`, state: item }}>
+                    <Link
+                      to={{ pathname: `/movies/${item.id}`, state: item }}
+                      style={{ color: 'black' }}
+                    >
                       <h2
                         style={{
                           fontSize: '16px',
@@ -230,7 +233,10 @@ const Home = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <Link to={{ pathname: `/games/${item.id}`, state: item }}>
+                    <Link
+                      to={{ pathname: `/games/${item.id}`, state: item }}
+                      style={{ color: 'black' }}
+                    >
                       <h2
                         style={{
                           fontSize: '16px',

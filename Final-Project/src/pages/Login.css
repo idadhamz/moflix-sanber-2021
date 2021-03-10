@@ -1,0 +1,30 @@
+.div-login {
+  margin: 8% 50px;
+}
+
+.img-login {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.p-masuk-akun {
+  margin-bottom: 40px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.div-form-login {
+  margin: 20px 0px;
+}
+
+.form-group {
+  margin: 20px 0px;
+}
+
+.form-group Label {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+}

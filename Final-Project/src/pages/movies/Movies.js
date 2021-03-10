@@ -98,6 +98,7 @@ class Movies extends Component {
                     >
                       <Link
                         to={{ pathname: `/movies/${item.id}`, state: item }}
+                        style={{ color: 'black' }}
                       >
                         <h2
                           style={{

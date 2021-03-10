@@ -95,7 +95,10 @@ class Games extends Component {
                         alignItems: 'center',
                       }}
                     >
-                      <Link to={{ pathname: `/games/${item.id}`, state: item }}>
+                      <Link
+                        to={{ pathname: `/games/${item.id}`, state: item }}
+                        style={{ color: 'black' }}
+                      >
                         <h2
                           style={{
                             fontSize: '16px',

@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import './css/Sidebar.css'
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Row, Col } from 'antd'
+import { AppContext } from '../context/AppContext'
 
 const Sidebar = () => {
+  const [user, setUser] = useContext(AppContext)
+  const handleLogout = () => {
+    setUser(null)
+    localStorage.removeItem('user')
+
+    alert('Logout Berhasil')
+  }
+
+  let location = useLocation()
+
   return (
     <>
       <div className="div-sidebar">
@@ -14,24 +25,51 @@ const Sidebar = () => {
               <nav>
                 <ul>
                   <li>
-                    <Link to="/" className="link">
-                      Home
+                    <div
+                      style={{
+                        borderBottom: '1.5px solid #32325B',
+                        padding: '10px 0',
+                      }}
+                    >
+                      <h2
+                        style={{
+                          fontSize: '14px',
+                          fontWeight: 'bold',
+                          color: 'black',
+                        }}
+                      >
+                        Hi, {user.name}
+                      </h2>
+                    </div>
+                  </li>
+                  <li>
+                    <Link
+                      to="/adminMovies"
+                      className={
+                        location.pathname === '/adminMovies'
+                          ? 'link active'
+                          : 'link'
+                      }
+                    >
+                      Kelola Data Movies
                     </Link>
                   </li>
                   <li>
-                    <Link to="/dataMovies" className="link">
-                      Data Movies
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/dataGames" className="link">
-                      Data Games
+                    <Link
+                      to="/adminGames"
+                      className={
+                        location.pathname === '/adminGames'
+                          ? 'link active'
+                          : 'link'
+                      }
+                    >
+                      Kelola Data Games
                     </Link>
                   </li>
                   <li>
                     <a
                       style={{ cursor: 'pointer' }}
-                      onClick=""
+                      onClick={handleLogout}
                       className="link"
                     >
                       Logout{' '}

@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './css/Header.css'
 
 import MovflixLogo from '../img/Movflix.png'
+import { AppContext } from '../context/AppContext'
 
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from 'antd'
 
 const Header = () => {
+  const [user] = useContext(AppContext)
+
   let location = useLocation()
 
   return (
@@ -17,7 +20,7 @@ const Header = () => {
         </a>
         <nav>
           <ul>
-            <div>
+            <div style={{ margin: user ? '0px' : '0 10px' }}>
               <li>
                 <Link
                   exact
@@ -48,8 +51,33 @@ const Header = () => {
                 </Link>
               </li>
             </div>
-            <Button className="btn-login">Login</Button>
-            <Button className="btn-register">Register</Button>
+            {user ? (
+              <></>
+            ) : (
+              <>
+                <Link to="/login" className="btn-login">
+                  <Button
+                    style={{
+                      border: '0',
+                      backgroundColor: 'transparent',
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/register" className="btn-register">
+                  <Button
+                    style={{
+                      border: '0',
+                      backgroundColor: 'transparent',
+                      color: 'white',
+                    }}
+                  >
+                    Register
+                  </Button>
+                </Link>
+              </>
+            )}
           </ul>
         </nav>
       </header>
