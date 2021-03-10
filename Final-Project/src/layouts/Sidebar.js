@@ -27,7 +27,7 @@ const Sidebar = () => {
                   <li>
                     <div
                       style={{
-                        borderBottom: '1.5px solid #32325B',
+                        borderBottom: '1px solid #32325B',
                         padding: '10px 0',
                       }}
                     >
@@ -51,7 +51,7 @@ const Sidebar = () => {
                           : 'link'
                       }
                     >
-                      Kelola Data Movies
+                      Setting Movies
                     </Link>
                   </li>
                   <li>
@@ -63,7 +63,19 @@ const Sidebar = () => {
                           : 'link'
                       }
                     >
-                      Kelola Data Games
+                      Setting Games
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/changePassword"
+                      className={
+                        location.pathname === '/changePassword'
+                          ? 'link active'
+                          : 'link'
+                      }
+                    >
+                      Change Password
                     </Link>
                   </li>
                   <li>

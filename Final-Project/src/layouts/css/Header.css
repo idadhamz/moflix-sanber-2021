@@ -1,8 +1,7 @@
 header {
   background-color: white;
 
-  border-bottom: 1.5px solid #32325b;
-
+  border-bottom: 1.5px solid gray;
   padding: 15px 50px;
 
   display: flex;

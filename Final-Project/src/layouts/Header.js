@@ -15,9 +15,9 @@ const Header = () => {
   return (
     <>
       <header>
-        <a href={'/'}>
+        <Link to="/">
           <img src={MovflixLogo} className="img-header" alt="img-header"></img>
-        </a>
+        </Link>
         <nav>
           <ul>
             <div style={{ margin: user ? '0px' : '0 10px' }}>

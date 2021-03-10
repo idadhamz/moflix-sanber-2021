@@ -31,18 +31,6 @@ const DetailMovies = () => {
 
   return (
     <>
-      <div
-        style={{
-          marginTop: '20px',
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-        }}
-      >
-        <Link to="/">
-          <h1 style={{ fontSize: '14px', margin: '0' }}>Back to home</h1>
-        </Link>
-      </div>
       <Row>
         {isLoading ? (
           <Col xs={12} md={12} lg={12}>

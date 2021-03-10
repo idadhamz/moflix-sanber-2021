@@ -1,6 +1,6 @@
 .div-sidebar {
   width: 20%;
-  height: auto;
+  height: fit-content;
   margin: 35px 20px;
   border-radius: 5px;
 

@@ -9,6 +9,7 @@ import Movies from '../pages/movies/Movies'
 import DetailMovies from '../pages/movies/DetailMovies'
 import Games from '../pages/games/Games'
 import DetailGames from '../pages/games/DetailGames'
+import ChangePassword from '../pages/ChangePassword'
 
 import AdminMovies from '../pages/movies/admin/AdminMovies'
 import AdminGames from '../pages/games/admin/AdminGames'
@@ -33,7 +34,13 @@ const Section = () => {
         <Route exact path="/games" user={user} component={Games} />
         <Route exact path="/games/:id" user={user} component={DetailGames} />
         <LoginRoute exact path="/login" user={user} component={Login} />
-        <Route exact path="/register" user={user} component={Register} />
+        <LoginRoute exact path="/register" user={user} component={Register} />
+        <PrivateRoute
+          exact
+          path="/changePassword"
+          user={user}
+          component={ChangePassword}
+        />
         <PrivateRoute
           exact
           path="/adminMovies"

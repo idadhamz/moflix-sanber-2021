@@ -50,7 +50,7 @@ const Home = () => {
                 singlePlayer: el.singlePlayer,
                 multiplayer: el.multiplayer,
                 name: el.name,
-                platfrom: el.platfrom,
+                platform: el.platform,
                 release: el.release,
               }
             }),
