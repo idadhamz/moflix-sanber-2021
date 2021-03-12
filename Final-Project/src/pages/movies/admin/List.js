@@ -29,6 +29,7 @@ const List = () => {
     rating: null,
     duration: null,
   })
+  const [sort, setSort] = useState('')
 
   useEffect(() => {
     if (movies === null) {
@@ -251,6 +252,89 @@ const List = () => {
         }, [])
       : []
 
+  const sortTable = (event) => {
+    let thSort = event.target.value
+
+    const sorted = movies.sort((a, b) => {
+      if (thSort == 'title') {
+        if (a.title < b.title) {
+          return -1
+        }
+        if (a.title > b.title) {
+          return 1
+        }
+        return 0
+      }
+
+      if (thSort == 'description') {
+        if (a.description < b.description) {
+          return -1
+        }
+        if (a.description > b.description) {
+          return 1
+        }
+        return 0
+      }
+
+      if (thSort == 'year') {
+        return b.year - a.year
+      }
+
+      if (thSort == 'duration') {
+        return b.duration - a.duration
+      }
+
+      if (thSort == 'genre') {
+        if (a.genre < b.genre) {
+          return -1
+        }
+        if (a.genre > b.genre) {
+          return 1
+        }
+        return 0
+      }
+
+      if (thSort == 'rating') {
+        return b.rating - a.rating
+      }
+
+      if (thSort == 'review') {
+        if (a.review < b.review) {
+          return -1
+        }
+        if (a.review > b.review) {
+          return 1
+        }
+        return 0
+      }
+    })
+    setMovies([...sorted])
+  }
+
+  const clearSort = (e) => {
+    e.preventDefault()
+
+    axios
+      .get(`https://backendexample.sanbersy.com/api/data-movie`)
+      .then((res) => {
+        let resMovie = res.data.map((el) => {
+          return {
+            id: el.id,
+            title: el.title,
+            description: el.description,
+            year: el.year,
+            duration: el.duration,
+            genre: el.genre,
+            rating: el.rating,
+            review: el.review,
+            image_url: el.image_url,
+          }
+        })
+
+        setMovies([...resMovie])
+      })
+  }
+
   return (
     <>
       <div style={{ margin: '20px 0px' }}>
@@ -273,7 +357,22 @@ const List = () => {
                 />
               </FormGroup>
             </Col>
-            <Col xs={12} md={4} lg={4}>
+            <Col
+              xs={12}
+              md={4}
+              lg={4}
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: '5px',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <FormGroup className="form-group" style={{ textAlign: 'right' }}>
+                <Button color="danger" onClick={clearSort}>
+                  Clear Sort
+                </Button>
+              </FormGroup>
               <FormGroup className="form-group" style={{ textAlign: 'right' }}>
                 <Link to="/createMovies">
                   <Button color="primary">Create New Movies</Button>
@@ -288,14 +387,70 @@ const List = () => {
               <tr>
                 <th>No</th>
                 <th>Cover</th>
-                <th>Title</th>
-                <th width="250px">Description</th>
-                <th>Year</th>
-                <th>Duration</th>
-                <th>Genre</th>
-                <th>Rating</th>
-                <th width="200px">Review</th>
-                <th width="150px">Action</th>
+                <th>
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="title"
+                  >
+                    Title
+                  </Button>
+                </th>
+                <th width="250px">
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="description"
+                  >
+                    Description
+                  </Button>
+                </th>
+                <th>
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="year"
+                  >
+                    Year
+                  </Button>
+                </th>
+                <th>
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="duration"
+                  >
+                    Duration
+                  </Button>
+                </th>
+                <th>
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="genre"
+                  >
+                    Genre
+                  </Button>
+                </th>
+                <th>
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="rating"
+                  >
+                    Rating
+                  </Button>
+                </th>
+                <th width="200px">
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="review"
+                  >
+                    Review
+                  </Button>
+                </th>
+                <th width="175px">Action</th>
               </tr>
             </thead>
             <tbody>

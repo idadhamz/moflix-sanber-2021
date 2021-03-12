@@ -174,6 +174,7 @@ const List = () => {
                             id="multiPlayer"
                             checked={multiPlayer === true}
                             value="true"
+                            onChange={() => {}}
                             onClick={() => setMultiPlayer(true)}
                           />
                           <Label check for="multiPlayer">
@@ -187,6 +188,7 @@ const List = () => {
                             id="multiPlayer"
                             checked={multiPlayer === false}
                             value="false"
+                            onChange={() => {}}
                             onClick={() => setMultiPlayer(false)}
                           />
                           <Label check for="multiPlayer">
@@ -200,6 +202,7 @@ const List = () => {
                             id="multiPlayer"
                             checked={multiPlayer === null}
                             value=""
+                            onChange={() => {}}
                             onClick={() => setMultiPlayer(null)}
                           />
                           <Label check for="multiPlayer">
@@ -286,6 +289,90 @@ const List = () => {
         }, [])
       : []
 
+  const sortTable = (event) => {
+    let thSort = event.target.value
+
+    const sorted = games.sort((a, b) => {
+      if (thSort == 'name') {
+        if (a.name < b.name) {
+          return -1
+        }
+        if (a.name > b.name) {
+          return 1
+        }
+        return 0
+      }
+
+      if (thSort == 'genre') {
+        if (a.genre < b.genre) {
+          return -1
+        }
+        if (a.genre > b.genre) {
+          return 1
+        }
+        return 0
+      }
+
+      if (thSort == 'platform') {
+        if (a.platform < b.platform) {
+          return -1
+        }
+        if (a.platform > b.platform) {
+          return 1
+        }
+        return 0
+      }
+
+      if (thSort == 'release') {
+        return b.release - a.release
+      }
+
+      if (thSort == 'multiPlayer') {
+        if (a.multiplayer > b.multiplayer) {
+          return -1
+        }
+        if (a.multiplayer < b.multiplayer) {
+          return 1
+        }
+        return 0
+      }
+
+      if (thSort == 'singlePlayer') {
+        if (a.singlePlayer > b.singlePlayer) {
+          return -1
+        }
+        if (a.singlePlayer < b.singlePlayer) {
+          return 1
+        }
+        return 0
+      }
+    })
+    setGames([...sorted])
+  }
+
+  const clearSort = (e) => {
+    e.preventDefault()
+
+    axios
+      .get(`https://backendexample.sanbersy.com/api/data-game`)
+      .then((res) => {
+        let resGames = res.data.map((el) => {
+          return {
+            id: el.id,
+            genre: el.genre,
+            image_url: el.image_url,
+            singlePlayer: el.singlePlayer,
+            multiplayer: el.multiplayer,
+            name: el.name,
+            platform: el.platform,
+            release: el.release,
+          }
+        })
+
+        setGames([...resGames])
+      })
+  }
+
   return (
     <>
       <div style={{ margin: '20px 0px' }}>
@@ -308,7 +395,22 @@ const List = () => {
                 />
               </FormGroup>
             </Col>
-            <Col xs={12} md={4} lg={4}>
+            <Col
+              xs={12}
+              md={4}
+              lg={4}
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: '5px',
+                justifyContent: 'flex-end',
+              }}
+            >
+              <FormGroup className="form-group" style={{ textAlign: 'right' }}>
+                <Button color="danger" onClick={clearSort}>
+                  Clear Sort
+                </Button>
+              </FormGroup>
               <FormGroup className="form-group" style={{ textAlign: 'right' }}>
                 <Link to="/createGames">
                   <Button color="primary">Create New Games</Button>
@@ -323,12 +425,60 @@ const List = () => {
               <tr>
                 <th>No</th>
                 <th>Cover</th>
-                <th>Name</th>
-                <th>Genre</th>
-                <th width="150px">Platform</th>
-                <th>Release</th>
-                <th width="100px">Multi Player</th>
-                <th width="100px">Single Player</th>
+                <th>
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="name"
+                  >
+                    Name
+                  </Button>
+                </th>
+                <th>
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="genre"
+                  >
+                    Genre
+                  </Button>
+                </th>
+                <th width="150px">
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="platform"
+                  >
+                    Platform
+                  </Button>
+                </th>
+                <th>
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="release"
+                  >
+                    Release
+                  </Button>
+                </th>
+                <th width="125px">
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="multiPlayer"
+                  >
+                    Multi Player
+                  </Button>
+                </th>
+                <th width="125px">
+                  <Button
+                    onClick={sortTable}
+                    style={{ cursor: 'pointer', border: 'none' }}
+                    value="singlePlayer"
+                  >
+                    Single Player
+                  </Button>
+                </th>
                 <th width="150px">Action</th>
               </tr>
             </thead>
