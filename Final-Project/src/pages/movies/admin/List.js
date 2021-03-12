@@ -4,6 +4,7 @@ import axios from 'axios'
 import {
   Row,
   Col,
+  Form,
   FormGroup,
   Input,
   Table,
@@ -23,6 +24,11 @@ const List = () => {
   const [movies, setMovies] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState({
+    year: null,
+    rating: null,
+    duration: null,
+  })
 
   useEffect(() => {
     if (movies === null) {
@@ -92,8 +98,17 @@ const List = () => {
   }
 
   const Filter = () => {
-    const year = [2021, 2020, 2019, 2018, 2017]
-    const rating = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    let year = []
+
+    for (var i = 2021; i >= 2000; i--) {
+      year.push(i)
+    }
+
+    let rating = []
+
+    for (var i = 1; i <= 10; i++) {
+      rating.push(i)
+    }
 
     return (
       <>
@@ -103,57 +118,140 @@ const List = () => {
               <CardTitle style={{ fontWeight: 'bold' }}>
                 Movies Filter
               </CardTitle>
-              <Row>
-                <Col sm="4">
-                  <FormGroup>
-                    <Label for="year">Year Movies</Label>
-                    <Input
-                      type="select"
-                      name="year"
-                      id="year"
-                      style={{ border: '1.5px solid gray' }}
-                    >
-                      {year.map((item) => {
-                        return <option value={item}>{item}</option>
-                      })}
-                    </Input>
-                  </FormGroup>
-                </Col>
-                <Col sm="4">
-                  <FormGroup>
-                    <Label for="rating">Rating Movies</Label>
-                    <Input
-                      type="select"
-                      name="select"
-                      id="rating"
-                      style={{ border: '1.5px solid gray' }}
-                    >
-                      {rating.map((item) => {
-                        return <option value={item}>{item}</option>
-                      })}
-                    </Input>
-                  </FormGroup>
-                </Col>
-                <Col sm="4">
-                  <FormGroup>
-                    <Label for="duration">Duration</Label>
-                    <Input
-                      type="number"
-                      name="duration"
-                      id="duration"
-                      placeholder="In Minutes"
-                      min="0"
-                      max="600"
-                      style={{ border: '1.5px solid gray' }}
-                    />
-                  </FormGroup>
-                </Col>
-              </Row>
+              <Form onSubmit={submitFilter}>
+                <Row>
+                  <Col sm="4">
+                    <FormGroup>
+                      <Label for="year">Year Movies</Label>
+                      <Input
+                        type="select"
+                        name="year"
+                        id="year"
+                        style={{ border: '1.5px solid gray' }}
+                        onChange={handleFilter}
+                        value={filter.year}
+                      >
+                        <option value=""></option>
+                        {year.map((item) => {
+                          return <option value={item}>{item}</option>
+                        })}
+                      </Input>
+                    </FormGroup>
+                  </Col>
+                  <Col sm="4">
+                    <FormGroup>
+                      <Label for="rating">Rating Movies</Label>
+                      <Input
+                        type="select"
+                        name="rating"
+                        id="rating"
+                        style={{ border: '1.5px solid gray' }}
+                        onChange={handleFilter}
+                        value={filter.rating}
+                      >
+                        <option value=""></option>
+                        {rating.map((item) => {
+                          return <option value={item}>{item}</option>
+                        })}
+                      </Input>
+                    </FormGroup>
+                  </Col>
+                  <Col sm="4">
+                    <FormGroup>
+                      <Label for="duration">Duration</Label>
+                      <Input
+                        type="text"
+                        name="duration"
+                        id="duration"
+                        placeholder="In Minutes"
+                        min="0"
+                        max="600"
+                        style={{ border: '1.5px solid gray' }}
+                        onChange={handleFilter}
+                        value={filter.duration}
+                        autoComplete="off"
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col sm="4" style={{ display: 'flex', gap: '5px' }}>
+                    <Button color="primary">Filter</Button>
+                  </Col>
+                </Row>
+              </Form>
             </Card>
           </Col>
         </Row>
       </>
     )
+  }
+
+  const handleFilter = (event) => {
+    let typeOfInput = event.target.name
+
+    switch (typeOfInput) {
+      case 'year': {
+        setFilter({ ...filter, year: event.target.value || null })
+        break
+      }
+      case 'rating': {
+        setFilter({ ...filter, rating: event.target.value || null })
+        break
+      }
+      case 'duration': {
+        setFilter({ ...filter, duration: event.target.value })
+        break
+      }
+      default: {
+        break
+      }
+    }
+  }
+
+  const submitFilter = (e) => {
+    e.preventDefault()
+
+    axios
+      .get(`https://backendexample.sanbersy.com/api/data-movie`)
+      .then((res) => {
+        let resMovie = res.data.map((el) => {
+          return {
+            id: el.id,
+            title: el.title,
+            description: el.description,
+            year: el.year,
+            duration: el.duration,
+            genre: el.genre,
+            rating: el.rating,
+            review: el.review,
+            image_url: el.image_url,
+          }
+        })
+
+        let filteredMovie = resMovie.filter(
+          (x) =>
+            (filter.year != null ? filter.year == x.year : x.year) &&
+            (filter.rating != null ? filter.rating == x.rating : x.rating) &&
+            (filter.duration != null
+              ? filter.duration == x.duration
+              : x.duration),
+        )
+
+        // console.log(resMovie)
+        // console.log(filter)
+        // console.log(
+        //   resMovie.filter(
+        //     (x) =>
+        //       (filter.year != null ? filter.year == x.year : x.year) &&
+        //       (filter.rating != null ? filter.rating == x.rating : x.rating) &&
+        //       (filter.duration != null
+        //         ? filter.duration == x.duration
+        //         : x.duration),
+        //   ),
+        // )
+        // console.log(filteredMovie)
+
+        setMovies([...filteredMovie])
+      })
   }
 
   const searchHandleChange = (event) => {
@@ -217,7 +315,7 @@ const List = () => {
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colspan="10" style={{ textAlign: 'center' }}>
+                  <td colSpan="10" style={{ textAlign: 'center' }}>
                     Loading...
                   </td>
                 </tr>

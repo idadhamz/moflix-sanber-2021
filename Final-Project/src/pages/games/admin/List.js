@@ -25,6 +25,12 @@ const List = () => {
   const [games, setGames] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [search, setSearch] = useState('')
+  const [filter, setFilter] = useState({
+    genre: null,
+    release: null,
+  })
+
+  const [genreGames, setGenreGames] = useState(null)
 
   useEffect(() => {
     if (games === null) {
@@ -42,6 +48,15 @@ const List = () => {
                 name: el.name,
                 platform: el.platform,
                 release: el.release,
+              }
+            }),
+          )
+
+          setGenreGames(
+            res.data.map((el) => {
+              return {
+                id: el.id,
+                genre: el.genre,
               }
             }),
           )
@@ -81,10 +96,17 @@ const List = () => {
   }
 
   const Filter = () => {
-    const year = [2021, 2020, 2019, 2018, 2017]
+    let release = []
+
+    for (var i = 2021; i >= 2000; i--) {
+      release.push(i)
+    }
+
     const filteredGenre =
-      games !== null &&
-      games.filter((v, i, a) => a.findIndex((t) => t.genre === v.genre) === i)
+      genreGames !== null &&
+      genreGames.filter(
+        (v, i, a) => a.findIndex((t) => t.genre === v.genre) === i,
+      )
 
     return (
       <>
@@ -92,71 +114,144 @@ const List = () => {
           <Col sm="12">
             <Card body>
               <CardTitle style={{ fontWeight: 'bold' }}>Games Filter</CardTitle>
-              <Row>
-                <Col sm="4">
-                  <FormGroup>
-                    <Label for="year">Release Year</Label>
-                    <Input
-                      type="select"
-                      name="year"
-                      id="year"
-                      style={{ border: '1.5px solid gray' }}
-                    >
-                      {year.map((item) => {
-                        return <option value={item}>{item}</option>
-                      })}
-                    </Input>
-                  </FormGroup>
-                </Col>
-                <Col sm="4">
-                  <FormGroup>
-                    <Label for="genre">Genre</Label>
-                    <Input
-                      type="select"
-                      name="genre"
-                      id="genre"
-                      style={{ border: '1.5px solid gray' }}
-                    >
-                      {games !== null &&
-                        filteredGenre.map((item) => {
-                          return (
-                            <option value={item.genre}>{item.genre}</option>
-                          )
+              <Form onSubmit={submitFilter}>
+                <Row>
+                  <Col sm="4">
+                    <FormGroup>
+                      <Label for="genre">Genre</Label>
+                      <Input
+                        type="select"
+                        name="genre"
+                        id="genre"
+                        style={{ border: '1.5px solid gray' }}
+                        onChange={handleFilter}
+                        value={filter.genre}
+                      >
+                        <option value=""></option>
+                        {genreGames !== null &&
+                          filteredGenre.map((item) => {
+                            return (
+                              <option value={item.genre}>{item.genre}</option>
+                            )
+                          })}
+                      </Input>
+                    </FormGroup>
+                  </Col>
+                  <Col sm="4">
+                    <FormGroup>
+                      <Label for="release">Release Year</Label>
+                      <Input
+                        type="select"
+                        name="release"
+                        id="release"
+                        style={{ border: '1.5px solid gray' }}
+                        onChange={handleFilter}
+                        value={filter.release}
+                      >
+                        <option value=""></option>
+                        {release.map((item) => {
+                          return <option value={item}>{item}</option>
                         })}
-                    </Input>
-                  </FormGroup>
-                </Col>
-                <Col sm="4">
-                  <FormGroup>
-                    <Label for="platform">Multi Player</Label>
-                    <div
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: '15px',
-                      }}
-                    >
-                      <FormGroup check>
-                        <Input type="radio" name="yes" id="yes" />
-                        <Label check for="yes">
-                          Yes
-                        </Label>
-                      </FormGroup>
-                      <FormGroup check>
-                        <Input type="radio" name="no" id="no" />
-                        <Label check for="no">
-                          No
-                        </Label>
-                      </FormGroup>
-                    </div>
-                  </FormGroup>
-                </Col>
-              </Row>
+                      </Input>
+                    </FormGroup>
+                  </Col>
+                  <Col sm="4">
+                    <FormGroup>
+                      <Label for="platform">Multi Player</Label>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          gap: '15px',
+                        }}
+                      >
+                        <FormGroup check>
+                          <Input type="radio" name="yes" id="yes" />
+                          <Label check for="yes">
+                            Yes
+                          </Label>
+                        </FormGroup>
+                        <FormGroup check>
+                          <Input type="radio" name="no" id="no" />
+                          <Label check for="no">
+                            No
+                          </Label>
+                        </FormGroup>
+                      </div>
+                    </FormGroup>
+                  </Col>
+                  <Col sm="4">
+                    <Button color="primary">Filter</Button>
+                  </Col>
+                </Row>
+              </Form>
             </Card>
           </Col>
         </Row>
       </>
     )
+  }
+
+  const handleFilter = (event) => {
+    let typeOfInput = event.target.name
+
+    switch (typeOfInput) {
+      case 'genre': {
+        setFilter({ ...filter, genre: event.target.value || null })
+        break
+      }
+      case 'release': {
+        setFilter({ ...filter, release: event.target.value || null })
+        break
+      }
+      default: {
+        break
+      }
+    }
+  }
+
+  const submitFilter = (e) => {
+    e.preventDefault()
+
+    axios
+      .get(`https://backendexample.sanbersy.com/api/data-game`)
+      .then((res) => {
+        let resGames = res.data.map((el) => {
+          return {
+            id: el.id,
+            genre: el.genre,
+            image_url: el.image_url,
+            singlePlayer: el.singlePlayer,
+            multiplayer: el.multiplayer,
+            name: el.name,
+            platform: el.platform,
+            release: el.release,
+          }
+        })
+
+        let filteredGames = resGames.filter(
+          (x) =>
+            (filter.release != null
+              ? filter.release == x.release
+              : x.release) &&
+            (filter.genre != null ? filter.genre == x.genre : x.genre),
+        )
+
+        // console.log(resGames)
+        // console.log(filter)
+        // console.log(
+        //   resGames.filter(
+        //     (x) =>
+        //       (filter.release != null
+        //         ? filter.release == x.release
+        //         : x.release) &&
+        //       (filter.genre != null ? filter.genre == x.genre : x.genre),
+        //   ),
+        // )
+        // console.log(filteredGames)
+
+        setGames([...filteredGames])
+      })
   }
 
   const searchHandleChange = (event) => {
