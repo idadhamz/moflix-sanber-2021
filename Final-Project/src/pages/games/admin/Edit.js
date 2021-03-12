@@ -203,45 +203,6 @@ const Edit = () => {
                   </Col>
                   <Col sm="6">
                     <FormGroup>
-                      <Label for="singlePlayer">Single Player</Label>
-                      <div
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'row',
-                          gap: '15px',
-                        }}
-                      >
-                        <FormGroup check>
-                          <Input
-                            type="radio"
-                            name="singlePlayer"
-                            id="singlePlayer"
-                            checked={singlePlayer === 1}
-                            value="1"
-                            onClick={() => setSinglePlayer(1)}
-                          />
-                          <Label check for="singlePlayer">
-                            Yes
-                          </Label>
-                        </FormGroup>
-                        <FormGroup check>
-                          <Input
-                            type="radio"
-                            name="singlePlayer"
-                            id="singlePlayer"
-                            checked={singlePlayer === 0}
-                            value="0"
-                            onClick={() => setSinglePlayer(0)}
-                          />
-                          <Label check for="singlePlayer">
-                            No
-                          </Label>
-                        </FormGroup>
-                      </div>
-                    </FormGroup>
-                  </Col>
-                  <Col sm="6">
-                    <FormGroup>
                       <Label for="multiPlayer">Multi Player</Label>
                       <div
                         style={{
@@ -273,6 +234,45 @@ const Edit = () => {
                             onClick={() => setMultiPlayer(0)}
                           />
                           <Label check for="multiPlayer">
+                            No
+                          </Label>
+                        </FormGroup>
+                      </div>
+                    </FormGroup>
+                  </Col>
+                  <Col sm="6">
+                    <FormGroup>
+                      <Label for="singlePlayer">Single Player</Label>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          gap: '15px',
+                        }}
+                      >
+                        <FormGroup check>
+                          <Input
+                            type="radio"
+                            name="singlePlayer"
+                            id="singlePlayer"
+                            checked={singlePlayer === 1}
+                            value="1"
+                            onClick={() => setSinglePlayer(1)}
+                          />
+                          <Label check for="singlePlayer">
+                            Yes
+                          </Label>
+                        </FormGroup>
+                        <FormGroup check>
+                          <Input
+                            type="radio"
+                            name="singlePlayer"
+                            id="singlePlayer"
+                            checked={singlePlayer === 0}
+                            value="0"
+                            onClick={() => setSinglePlayer(0)}
+                          />
+                          <Label check for="singlePlayer">
                             No
                           </Label>
                         </FormGroup>

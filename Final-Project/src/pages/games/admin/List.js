@@ -4,6 +4,7 @@ import axios from 'axios'
 import {
   Row,
   Col,
+  Form,
   FormGroup,
   Input,
   Table,
@@ -22,6 +23,8 @@ import ImageNotFound from '../../../img/imageNotFound.png'
 const List = () => {
   const [user] = useContext(AppContext)
   const [games, setGames] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     if (games === null) {
@@ -42,6 +45,8 @@ const List = () => {
               }
             }),
           )
+
+          setIsLoading(false)
         })
     }
   }, [games])
@@ -154,6 +159,17 @@ const List = () => {
     )
   }
 
+  const searchHandleChange = (event) => {
+    setSearch(event.target.value)
+  }
+
+  let updateGames =
+    games !== null
+      ? games.filter((game) => {
+          return game.name.toLowerCase().includes(search.toLocaleLowerCase())
+        }, [])
+      : []
+
   return (
     <>
       <div style={{ margin: '20px 0px' }}>
@@ -170,6 +186,9 @@ const List = () => {
                   id="search"
                   placeholder="Cari berdasarkan name games..."
                   style={{ border: '1.5px solid gray' }}
+                  value={search}
+                  onChange={searchHandleChange}
+                  autoComplete="off"
                 />
               </FormGroup>
             </Col>
@@ -198,8 +217,14 @@ const List = () => {
               </tr>
             </thead>
             <tbody>
-              {games !== null &&
-                games.map((item, index) => {
+              {isLoading ? (
+                <tr>
+                  <td colspan="9" style={{ textAlign: 'center' }}>
+                    Loading...
+                  </td>
+                </tr>
+              ) : (
+                (search === '' ? games : updateGames).map((item, index) => {
                   return (
                     <tr key={index}>
                       <td>{index + 1}</td>
@@ -238,7 +263,8 @@ const List = () => {
                       </td>
                     </tr>
                   )
-                })}
+                })
+              )}
             </tbody>
           </Table>
         </div>

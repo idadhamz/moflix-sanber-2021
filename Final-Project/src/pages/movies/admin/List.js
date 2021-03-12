@@ -21,6 +21,8 @@ import ImageNotFound from '../../../img/imageNotFound.png'
 const List = () => {
   const [user] = useContext(AppContext)
   const [movies, setMovies] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     if (movies === null) {
@@ -42,6 +44,8 @@ const List = () => {
               }
             }),
           )
+
+          setIsLoading(false)
         })
     }
   }, [movies])
@@ -152,6 +156,17 @@ const List = () => {
     )
   }
 
+  const searchHandleChange = (event) => {
+    setSearch(event.target.value)
+  }
+
+  let updateMovies =
+    movies !== null
+      ? movies.filter((movie) => {
+          return movie.title.toLowerCase().includes(search.toLocaleLowerCase())
+        }, [])
+      : []
+
   return (
     <>
       <div style={{ margin: '20px 0px' }}>
@@ -168,6 +183,9 @@ const List = () => {
                   id="search"
                   placeholder="Cari berdasarkan title movies..."
                   style={{ border: '1.5px solid gray' }}
+                  value={search}
+                  onChange={searchHandleChange}
+                  autoComplete="off"
                 />
               </FormGroup>
             </Col>
@@ -197,8 +215,14 @@ const List = () => {
               </tr>
             </thead>
             <tbody>
-              {movies !== null &&
-                movies.map((item, index) => {
+              {isLoading ? (
+                <tr>
+                  <td colspan="10" style={{ textAlign: 'center' }}>
+                    Loading...
+                  </td>
+                </tr>
+              ) : (
+                (search === '' ? movies : updateMovies).map((item, index) => {
                   return (
                     <tr key={index}>
                       <td>{index + 1}</td>
@@ -228,7 +252,8 @@ const List = () => {
                       </td>
                     </tr>
                   )
-                })}
+                })
+              )}
             </tbody>
           </Table>
         </div>
