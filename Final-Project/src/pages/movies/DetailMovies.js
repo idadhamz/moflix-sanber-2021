@@ -95,6 +95,39 @@ const DetailMovies = () => {
                   >
                     {detailMovies.description}
                   </h2>
+                  <h2
+                    style={{
+                      color: 'black',
+                      fontSize: '16px',
+                      textAlign: 'justify',
+                      lineHeight: '2rem',
+                      margin: '10px 0',
+                    }}
+                  >
+                    Duration : <b>{detailMovies.duration} Minutes</b>
+                  </h2>
+                  <h2
+                    style={{
+                      color: 'black',
+                      fontSize: '16px',
+                      textAlign: 'justify',
+                      lineHeight: '2rem',
+                      margin: '10px 0',
+                    }}
+                  >
+                    Rating : <b>{detailMovies.rating}/10</b>
+                  </h2>
+                  <h2
+                    style={{
+                      color: 'black',
+                      fontSize: '14px',
+                      textAlign: 'justify',
+                      lineHeight: '2rem',
+                      margin: '10px 0',
+                    }}
+                  >
+                    Review : "<i>{detailMovies.review}</i>"
+                  </h2>
                 </div>
               </div>
             </Col>

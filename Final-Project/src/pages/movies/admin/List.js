@@ -236,20 +236,6 @@ const List = () => {
               : x.duration),
         )
 
-        // console.log(resMovie)
-        // console.log(filter)
-        // console.log(
-        //   resMovie.filter(
-        //     (x) =>
-        //       (filter.year != null ? filter.year == x.year : x.year) &&
-        //       (filter.rating != null ? filter.rating == x.rating : x.rating) &&
-        //       (filter.duration != null
-        //         ? filter.duration == x.duration
-        //         : x.duration),
-        //   ),
-        // )
-        // console.log(filteredMovie)
-
         setMovies([...filteredMovie])
       })
   }
@@ -309,7 +295,7 @@ const List = () => {
                 <th>Genre</th>
                 <th>Rating</th>
                 <th width="200px">Review</th>
-                <th width="130px">Action</th>
+                <th width="150px">Action</th>
               </tr>
             </thead>
             <tbody>

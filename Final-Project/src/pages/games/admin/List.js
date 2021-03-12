@@ -29,8 +29,10 @@ const List = () => {
     genre: null,
     release: null,
   })
-
+  const [multiPlayer, setMultiPlayer] = useState(null)
   const [genreGames, setGenreGames] = useState(null)
+  const [sortDirection, setSortDirection] = useState('asc')
+  const [selectedHeaderIndex, setSelectedHeaderIndex] = useState(0)
 
   useEffect(() => {
     if (games === null) {
@@ -157,7 +159,7 @@ const List = () => {
                   </Col>
                   <Col sm="4">
                     <FormGroup>
-                      <Label for="platform">Multi Player</Label>
+                      <Label for="multiPlayer">Multi Player</Label>
                       <div
                         style={{
                           display: 'flex',
@@ -166,15 +168,42 @@ const List = () => {
                         }}
                       >
                         <FormGroup check>
-                          <Input type="radio" name="yes" id="yes" />
-                          <Label check for="yes">
+                          <Input
+                            type="radio"
+                            name="multiPlayer"
+                            id="multiPlayer"
+                            checked={multiPlayer === true}
+                            value="true"
+                            onClick={() => setMultiPlayer(true)}
+                          />
+                          <Label check for="multiPlayer">
                             Yes
                           </Label>
                         </FormGroup>
                         <FormGroup check>
-                          <Input type="radio" name="no" id="no" />
-                          <Label check for="no">
+                          <Input
+                            type="radio"
+                            name="multiPlayer"
+                            id="multiPlayer"
+                            checked={multiPlayer === false}
+                            value="false"
+                            onClick={() => setMultiPlayer(false)}
+                          />
+                          <Label check for="multiPlayer">
                             No
+                          </Label>
+                        </FormGroup>
+                        <FormGroup check>
+                          <Input
+                            type="radio"
+                            name="multiPlayer"
+                            id="multiPlayer"
+                            checked={multiPlayer === null}
+                            value=""
+                            onClick={() => setMultiPlayer(null)}
+                          />
+                          <Label check for="multiPlayer">
+                            All
                           </Label>
                         </FormGroup>
                       </div>
@@ -234,21 +263,13 @@ const List = () => {
             (filter.release != null
               ? filter.release == x.release
               : x.release) &&
-            (filter.genre != null ? filter.genre == x.genre : x.genre),
+            (filter.genre != null ? filter.genre == x.genre : x.genre) &&
+            (multiPlayer != null
+              ? multiPlayer == true
+                ? 1 == x.multiplayer
+                : 0 == x.multiplayer
+              : 1 || 0 == x.multiplayer),
         )
-
-        // console.log(resGames)
-        // console.log(filter)
-        // console.log(
-        //   resGames.filter(
-        //     (x) =>
-        //       (filter.release != null
-        //         ? filter.release == x.release
-        //         : x.release) &&
-        //       (filter.genre != null ? filter.genre == x.genre : x.genre),
-        //   ),
-        // )
-        // console.log(filteredGames)
 
         setGames([...filteredGames])
       })
@@ -306,15 +327,15 @@ const List = () => {
                 <th>Genre</th>
                 <th width="150px">Platform</th>
                 <th>Release</th>
-                <th>Multi Player</th>
-                <th>Single Player</th>
-                <th>Action</th>
+                <th width="100px">Multi Player</th>
+                <th width="100px">Single Player</th>
+                <th width="150px">Action</th>
               </tr>
             </thead>
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colspan="9" style={{ textAlign: 'center' }}>
+                  <td colSpan="9" style={{ textAlign: 'center' }}>
                     Loading...
                   </td>
                 </tr>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 
-import { Row, Col, Spinner } from 'reactstrap'
+import { Row, Col, Spinner, Badge } from 'reactstrap'
 
 const DetailGames = () => {
   const [detailGames, setDetailGames] = useState(null)
@@ -20,7 +20,7 @@ const DetailGames = () => {
           singlePlayer: res.data.singlePlayer,
           multiplayer: res.data.multiplayer,
           name: res.data.name,
-          platfrom: res.data.platfrom,
+          platform: res.data.platform,
           release: res.data.release,
         })
 
@@ -83,6 +83,39 @@ const DetailGames = () => {
                       ({detailGames.release})
                     </span>
                   </h2>
+                  <p
+                    style={{
+                      color: 'black',
+                      fontSize: '14px',
+                      margin: '10px 0',
+                    }}
+                  >
+                    <span>
+                      Multi Player :{' '}
+                      {detailGames.multiplayer == 1 ? (
+                        <Badge color="primary">Bisa</Badge>
+                      ) : (
+                        <Badge color="danger">Tidak Bisa</Badge>
+                      )}
+                    </span>
+                    <span style={{ margin: '0 10px' }}>
+                      Single Player :{' '}
+                      {detailGames.singlePlayer == 1 ? (
+                        <Badge color="primary">Bisa</Badge>
+                      ) : (
+                        <Badge color="danger">Tidak Bisa</Badge>
+                      )}
+                    </span>
+                  </p>
+                  <p
+                    style={{
+                      color: 'black',
+                      fontSize: '14px',
+                      margin: '10px 0',
+                    }}
+                  >
+                    Platform : {detailGames.platform}
+                  </p>
                 </div>
               </div>
             </Col>
