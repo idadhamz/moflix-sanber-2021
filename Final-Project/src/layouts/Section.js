@@ -11,8 +11,13 @@ import Games from '../pages/games/Games'
 import DetailGames from '../pages/games/DetailGames'
 import ChangePassword from '../pages/ChangePassword'
 
-import AdminMovies from '../pages/movies/admin/AdminMovies'
-import AdminGames from '../pages/games/admin/AdminGames'
+import ListMovies from '../pages/movies/admin/List'
+import CreateMovies from '../pages/movies/admin/Create'
+import EditMovies from '../pages/movies/admin/Edit'
+
+import ListGames from '../pages/games/admin/List'
+import CreateGames from '../pages/games/admin/Create'
+import EditGames from '../pages/games/admin/Edit'
 
 import { AppContext } from '../context/AppContext'
 
@@ -41,17 +46,47 @@ const Section = () => {
           user={user}
           component={ChangePassword}
         />
+
+        {/* Admin Movies */}
+
         <PrivateRoute
           exact
-          path="/adminMovies"
+          path="/listMovies"
           user={user}
-          component={AdminMovies}
+          component={ListMovies}
         />
         <PrivateRoute
           exact
-          path="/adminGames"
+          path="/createMovies"
           user={user}
-          component={AdminGames}
+          component={CreateMovies}
+        />
+        <PrivateRoute
+          exact
+          path="/editMovies/:id"
+          user={user}
+          component={EditMovies}
+        />
+
+        {/* Admin Games */}
+
+        <PrivateRoute
+          exact
+          path="/listGames"
+          user={user}
+          component={ListGames}
+        />
+        <PrivateRoute
+          exact
+          path="/createGames"
+          user={user}
+          component={CreateGames}
+        />
+        <PrivateRoute
+          exact
+          path="/editGames/:id"
+          user={user}
+          component={EditGames}
         />
       </Switch>
     </section>

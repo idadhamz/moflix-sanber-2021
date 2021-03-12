@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import './css/Sidebar.css'
 
 import { Link, useLocation } from 'react-router-dom'
@@ -44,9 +44,9 @@ const Sidebar = () => {
                   </li>
                   <li>
                     <Link
-                      to="/adminMovies"
+                      to="/listMovies"
                       className={
-                        location.pathname === '/adminMovies'
+                        location.pathname === '/listMovies'
                           ? 'link active'
                           : 'link'
                       }
@@ -56,9 +56,9 @@ const Sidebar = () => {
                   </li>
                   <li>
                     <Link
-                      to="/adminGames"
+                      to="/listGames"
                       className={
-                        location.pathname === '/adminGames'
+                        location.pathname === '/listGames'
                           ? 'link active'
                           : 'link'
                       }
