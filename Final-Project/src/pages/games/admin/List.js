@@ -15,6 +15,8 @@ import {
   Badge,
 } from 'reactstrap'
 
+import { BsArrowDown, BsArrowUp } from 'react-icons/bs'
+
 import { Link } from 'react-router-dom'
 import { AppContext } from '../../../context/AppContext'
 
@@ -31,8 +33,7 @@ const List = () => {
   })
   const [multiPlayer, setMultiPlayer] = useState(null)
   const [genreGames, setGenreGames] = useState(null)
-  const [sortDirection, setSortDirection] = useState('asc')
-  const [selectedHeaderIndex, setSelectedHeaderIndex] = useState(0)
+  const [sort, setSort] = useState('asc')
 
   useEffect(() => {
     if (games === null) {
@@ -294,57 +295,123 @@ const List = () => {
 
     const sorted = games.sort((a, b) => {
       if (thSort == 'name') {
-        if (a.name < b.name) {
-          return -1
+        if (sort == 'asc') {
+          setSort('desc')
+          if (a.name < b.name) {
+            return -1
+          }
+          if (a.name > b.name) {
+            return 1
+          }
+          return 0
+        } else if (sort == 'desc') {
+          setSort('asc')
+          if (a.name < b.name) {
+            return 1
+          }
+          if (a.name > b.name) {
+            return -1
+          }
+          return 0
         }
-        if (a.name > b.name) {
-          return 1
-        }
-        return 0
       }
 
       if (thSort == 'genre') {
-        if (a.genre < b.genre) {
-          return -1
+        if (sort == 'asc') {
+          setSort('desc')
+          if (a.genre < b.genre) {
+            return -1
+          }
+          if (a.genre > b.genre) {
+            return 1
+          }
+          return 0
+        } else if (sort == 'desc') {
+          setSort('asc')
+          if (a.genre < b.genre) {
+            return 1
+          }
+          if (a.genre > b.genre) {
+            return -1
+          }
+          return 0
         }
-        if (a.genre > b.genre) {
-          return 1
-        }
-        return 0
       }
 
       if (thSort == 'platform') {
-        if (a.platform < b.platform) {
-          return -1
+        if (sort == 'asc') {
+          setSort('desc')
+          if (a.platform < b.platform) {
+            return -1
+          }
+          if (a.platform > b.platform) {
+            return 1
+          }
+          return 0
+        } else if (sort == 'desc') {
+          setSort('asc')
+          if (a.platform < b.platform) {
+            return 1
+          }
+          if (a.platform > b.platform) {
+            return -1
+          }
+          return 0
         }
-        if (a.platform > b.platform) {
-          return 1
-        }
-        return 0
       }
 
       if (thSort == 'release') {
-        return b.release - a.release
+        if (sort == 'asc') {
+          setSort('desc')
+          return b.release - a.release
+        } else if (sort == 'desc') {
+          setSort('asc')
+          return a.release - b.release
+        }
       }
 
       if (thSort == 'multiPlayer') {
-        if (a.multiplayer > b.multiplayer) {
-          return -1
+        if (sort == 'asc') {
+          setSort('desc')
+          if (a.multiplayer < b.multiplayer) {
+            return -1
+          }
+          if (a.multiplayer > b.multiplayer) {
+            return 1
+          }
+          return 0
+        } else if (sort == 'desc') {
+          setSort('asc')
+          if (a.multiplayer < b.multiplayer) {
+            return 1
+          }
+          if (a.multiplayer > b.multiplayer) {
+            return -1
+          }
+          return 0
         }
-        if (a.multiplayer < b.multiplayer) {
-          return 1
-        }
-        return 0
       }
 
       if (thSort == 'singlePlayer') {
-        if (a.singlePlayer > b.singlePlayer) {
-          return -1
+        if (sort == 'asc') {
+          setSort('desc')
+          if (a.singlePlayer < b.singlePlayer) {
+            return -1
+          }
+          if (a.singlePlayer > b.singlePlayer) {
+            return 1
+          }
+          return 0
+        } else if (sort == 'desc') {
+          setSort('asc')
+          if (a.singlePlayer < b.singlePlayer) {
+            return 1
+          }
+          if (a.singlePlayer > b.singlePlayer) {
+            return -1
+          }
+          return 0
         }
-        if (a.singlePlayer < b.singlePlayer) {
-          return 1
-        }
-        return 0
       }
     })
     setGames([...sorted])
@@ -420,27 +487,27 @@ const List = () => {
           </Row>
         </div>
         <div>
-          <Table bordered hover>
+          <Table responsive bordered hover>
             <thead style={{ backgroundColor: '#32325b', color: 'white' }}>
               <tr>
                 <th>No</th>
                 <th>Cover</th>
-                <th>
+                <th width="115px">
                   <Button
                     onClick={sortTable}
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="name"
                   >
-                    Name
+                    Name {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th>
+                <th width="115px">
                   <Button
                     onClick={sortTable}
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="genre"
                   >
-                    Genre
+                    Genre {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
                 <th width="150px">
@@ -449,34 +516,36 @@ const List = () => {
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="platform"
                   >
-                    Platform
+                    Platform {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th>
+                <th width="100px">
                   <Button
                     onClick={sortTable}
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="release"
                   >
-                    Release
+                    Release {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th width="125px">
+                <th width="135px">
                   <Button
                     onClick={sortTable}
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="multiPlayer"
                   >
-                    Multi Player
+                    Multi Player{' '}
+                    {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th width="125px">
+                <th width="135px">
                   <Button
                     onClick={sortTable}
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="singlePlayer"
                   >
-                    Single Player
+                    Single Player{' '}
+                    {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
                 <th width="150px">Action</th>

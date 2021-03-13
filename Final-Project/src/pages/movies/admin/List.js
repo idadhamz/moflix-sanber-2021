@@ -14,6 +14,8 @@ import {
   Label,
 } from 'reactstrap'
 
+import { BsArrowDown, BsArrowUp } from 'react-icons/bs'
+
 import { Link } from 'react-router-dom'
 import { AppContext } from '../../../context/AppContext'
 
@@ -29,7 +31,7 @@ const List = () => {
     rating: null,
     duration: null,
   })
-  const [sort, setSort] = useState('')
+  const [sort, setSort] = useState('asc')
 
   useEffect(() => {
     if (movies === null) {
@@ -257,58 +259,126 @@ const List = () => {
 
     const sorted = movies.sort((a, b) => {
       if (thSort == 'title') {
-        if (a.title < b.title) {
-          return -1
+        if (sort == 'asc') {
+          setSort('desc')
+          if (a.title < b.title) {
+            return -1
+          }
+          if (a.title > b.title) {
+            return 1
+          }
+          return 0
+        } else if (sort == 'desc') {
+          setSort('asc')
+          if (a.title < b.title) {
+            return 1
+          }
+          if (a.title > b.title) {
+            return -1
+          }
+          return 0
         }
-        if (a.title > b.title) {
-          return 1
-        }
-        return 0
       }
 
       if (thSort == 'description') {
-        if (a.description < b.description) {
-          return -1
+        if (sort == 'asc') {
+          setSort('desc')
+          if (a.description < b.description) {
+            return -1
+          }
+          if (a.description > b.description) {
+            return 1
+          }
+          return 0
+        } else if (sort == 'desc') {
+          setSort('asc')
+          if (a.description < b.description) {
+            return 1
+          }
+          if (a.description > b.description) {
+            return -1
+          }
+          return 0
         }
-        if (a.description > b.description) {
-          return 1
-        }
-        return 0
       }
 
       if (thSort == 'year') {
-        return b.year - a.year
+        if (sort == 'asc') {
+          setSort('desc')
+          return b.year - a.year
+        } else if (sort == 'desc') {
+          setSort('asc')
+          return a.year - b.year
+        }
       }
 
       if (thSort == 'duration') {
-        return b.duration - a.duration
+        if (sort == 'asc') {
+          setSort('desc')
+          return b.duration - a.duration
+        } else if (sort == 'desc') {
+          setSort('asc')
+          return a.duration - b.duration
+        }
       }
 
       if (thSort == 'genre') {
-        if (a.genre < b.genre) {
-          return -1
+        if (sort == 'asc') {
+          setSort('desc')
+          if (a.genre < b.genre) {
+            return -1
+          }
+          if (a.genre > b.genre) {
+            return 1
+          }
+          return 0
+        } else if (sort == 'desc') {
+          setSort('asc')
+          if (a.genre < b.genre) {
+            return 1
+          }
+          if (a.genre > b.genre) {
+            return -1
+          }
+          return 0
         }
-        if (a.genre > b.genre) {
-          return 1
-        }
-        return 0
       }
 
       if (thSort == 'rating') {
-        return b.rating - a.rating
+        if (sort == 'asc') {
+          setSort('desc')
+          return b.rating - a.rating
+        } else if (sort == 'desc') {
+          setSort('asc')
+          return a.rating - b.rating
+        }
       }
 
       if (thSort == 'review') {
-        if (a.review < b.review) {
-          return -1
+        if (sort == 'asc') {
+          setSort('desc')
+          if (a.review < b.review) {
+            return -1
+          }
+          if (a.review > b.review) {
+            return 1
+          }
+          return 0
+        } else if (sort == 'desc') {
+          setSort('asc')
+          if (a.review < b.review) {
+            return 1
+          }
+          if (a.review > b.review) {
+            return -1
+          }
+          return 0
         }
-        if (a.review > b.review) {
-          return 1
-        }
-        return 0
       }
     })
     setMovies([...sorted])
+
+    console.log(movies)
   }
 
   const clearSort = (e) => {
@@ -332,6 +402,7 @@ const List = () => {
         })
 
         setMovies([...resMovie])
+        setSort('asc')
       })
   }
 
@@ -382,7 +453,7 @@ const List = () => {
           </Row>
         </div>
         <div>
-          <Table bordered hover>
+          <Table responsive bordered hover>
             <thead style={{ backgroundColor: '#32325b', color: 'white' }}>
               <tr>
                 <th>No</th>
@@ -393,34 +464,37 @@ const List = () => {
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="title"
                   >
-                    Title
+                    Title {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th width="250px">
+                <th width="200px">
                   <Button
                     onClick={sortTable}
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="description"
                   >
-                    Description
+                    Description{' '}
+                    {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th>
+                <th width="115px">
                   <Button
                     onClick={sortTable}
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="year"
                   >
                     Year
+                    {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th>
+                <th width="125px">
                   <Button
                     onClick={sortTable}
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="duration"
                   >
                     Duration
+                    {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
                 <th>
@@ -430,15 +504,17 @@ const List = () => {
                     value="genre"
                   >
                     Genre
+                    {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th>
+                <th width="115px">
                   <Button
                     onClick={sortTable}
                     style={{ cursor: 'pointer', border: 'none' }}
                     value="rating"
                   >
                     Rating
+                    {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
                 <th width="200px">
@@ -448,9 +524,10 @@ const List = () => {
                     value="review"
                   >
                     Review
+                    {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th width="175px">Action</th>
+                <th width="200px">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -472,8 +549,8 @@ const List = () => {
                               ? ImageNotFound
                               : item.image_url
                           }
-                          width="100px"
-                          height="100px"
+                          width="80px"
+                          height="80px"
                           style={{ objectFit: 'cover' }}
                         />
                       </td>
