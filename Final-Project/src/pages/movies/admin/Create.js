@@ -237,6 +237,8 @@ const Create = () => {
                         style={{ border: '1.5px solid gray' }}
                         value={input.rating}
                         onChange={handleChange}
+                        min="0"
+                        max="10"
                         required
                       />
                     </FormGroup>
