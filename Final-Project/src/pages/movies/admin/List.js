@@ -25,6 +25,7 @@ const List = () => {
   const [user] = useContext(AppContext)
   const [movies, setMovies] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isNull, setIsNull] = useState(false)
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState({
     year: null,
@@ -201,7 +202,7 @@ const List = () => {
         break
       }
       case 'duration': {
-        setFilter({ ...filter, duration: event.target.value })
+        setFilter({ ...filter, duration: event.target.value || null })
         break
       }
       default: {
@@ -232,12 +233,25 @@ const List = () => {
 
         let filteredMovie = resMovie.filter(
           (x) =>
-            (filter.year != null ? filter.year == x.year : x.year) &&
-            (filter.rating != null ? filter.rating == x.rating : x.rating) &&
+            (filter.year != null
+              ? filter.year == x.year
+              : filter.year != x.year) &&
+            (filter.rating != null
+              ? filter.rating == x.rating
+              : filter.rating != x.rating) &&
             (filter.duration != null
               ? filter.duration == x.duration
-              : x.duration),
+              : filter.duration != x.duration),
         )
+
+        console.log(filter)
+        console.log(filteredMovie)
+
+        if (filteredMovie.length == 0) {
+          setIsNull(true)
+        } else {
+          setIsNull(false)
+        }
 
         setMovies([...filteredMovie])
       })
@@ -539,6 +553,12 @@ const List = () => {
                 <tr>
                   <td colSpan="10" style={{ textAlign: 'center' }}>
                     Loading...
+                  </td>
+                </tr>
+              ) : isNull ? (
+                <tr>
+                  <td colSpan="10" style={{ textAlign: 'center' }}>
+                    Data tidak ada
                   </td>
                 </tr>
               ) : (

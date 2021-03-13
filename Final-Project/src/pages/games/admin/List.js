@@ -26,6 +26,7 @@ const List = () => {
   const [user] = useContext(AppContext)
   const [games, setGames] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isNull, setIsNull] = useState(false)
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState({
     genre: null,
@@ -266,14 +267,22 @@ const List = () => {
           (x) =>
             (filter.release != null
               ? filter.release == x.release
-              : x.release) &&
-            (filter.genre != null ? filter.genre == x.genre : x.genre) &&
+              : filter.release != x.release) &&
+            (filter.genre != null
+              ? filter.genre == x.genre
+              : filter.genre != x.genre) &&
             (multiPlayer != null
               ? multiPlayer == true
                 ? 1 == x.multiplayer
                 : 0 == x.multiplayer
               : 1 || 0 == x.multiplayer),
         )
+
+        if (filteredGames.length == 0) {
+          setIsNull(true)
+        } else {
+          setIsNull(false)
+        }
 
         setGames([...filteredGames])
       })
@@ -558,6 +567,12 @@ const List = () => {
                 <tr>
                   <td colSpan="9" style={{ textAlign: 'center' }}>
                     Loading...
+                  </td>
+                </tr>
+              ) : isNull ? (
+                <tr>
+                  <td colSpan="9" style={{ textAlign: 'center' }}>
+                    Data tidak ada
                   </td>
                 </tr>
               ) : (
