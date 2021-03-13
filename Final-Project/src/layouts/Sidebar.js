@@ -5,6 +5,9 @@ import { Link, useLocation } from 'react-router-dom'
 import { Row, Col } from 'antd'
 import { AppContext } from '../context/AppContext'
 
+import { BsFillLockFill, BsFilm, BsBoxArrowInLeft } from 'react-icons/bs'
+import { CgGames } from 'react-icons/cg'
+
 const Sidebar = () => {
   const [user, setUser] = useContext(AppContext)
   const handleLogout = () => {
@@ -27,7 +30,7 @@ const Sidebar = () => {
                   <li>
                     <div
                       style={{
-                        borderBottom: '1px solid #32325B',
+                        borderBottom: '1px solid gray',
                         padding: '10px 0',
                       }}
                     >
@@ -51,7 +54,7 @@ const Sidebar = () => {
                           : 'link'
                       }
                     >
-                      Setting Movies
+                      <BsFilm style={{ marginRight: '5px' }} /> Setting Movies
                     </Link>
                   </li>
                   <li>
@@ -63,7 +66,7 @@ const Sidebar = () => {
                           : 'link'
                       }
                     >
-                      Setting Games
+                      <CgGames style={{ marginRight: '5px' }} /> Setting Games
                     </Link>
                   </li>
                   <li>
@@ -75,7 +78,8 @@ const Sidebar = () => {
                           : 'link'
                       }
                     >
-                      Change Password
+                      <BsFillLockFill style={{ marginRight: '5px' }} /> Change
+                      Password
                     </Link>
                   </li>
                   <li>
@@ -84,6 +88,7 @@ const Sidebar = () => {
                       onClick={handleLogout}
                       className="link"
                     >
+                      <BsBoxArrowInLeft style={{ marginRight: '5px' }} />
                       Logout{' '}
                     </a>
                   </li>

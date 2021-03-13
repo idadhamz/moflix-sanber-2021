@@ -40,7 +40,7 @@ class Movies extends Component {
   render() {
     return (
       <>
-        <div style={{ margin: '20px 0' }}>
+        <div style={{ marginBottom: '20px' }}>
           <h1 style={{ fontSize: '24px' }}>Movies</h1>
         </div>
         <Row>

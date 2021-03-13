@@ -32,7 +32,7 @@ const ChangePassword = () => {
         var data = res.data
         setUser({ ...user, password: data.password })
 
-        alert('Register Berhasil')
+        alert('Ubah Password Berhasil')
 
         setInput({
           current_password: '',

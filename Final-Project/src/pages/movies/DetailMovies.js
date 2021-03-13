@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 import { Row, Col, Spinner } from 'reactstrap'
+import { BsClockFill, BsStarFill } from 'react-icons/bs'
 
 const DetailMovies = () => {
   const [detailMovies, setDetailMovies] = useState(null)
@@ -36,12 +37,12 @@ const DetailMovies = () => {
           <Col xs={12} md={12} lg={12}>
             <Spinner
               color="primary"
-              style={{ margin: '20px 0', width: '3rem', height: '3rem' }}
+              style={{ width: '3rem', height: '3rem' }}
             />
           </Col>
         ) : (
           detailMovies !== null && (
-            <Col xs={12} md={12} lg={12} style={{ margin: '30px 0px' }}>
+            <Col xs={12} md={12} lg={12}>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <img
                   src={detailMovies.image_url}
@@ -56,7 +57,7 @@ const DetailMovies = () => {
                   style={{
                     width: '100%',
                     height: '100%',
-                    padding: '5%',
+                    padding: '0px 5%',
                   }}
                 >
                   <h2
@@ -67,7 +68,7 @@ const DetailMovies = () => {
                       padding: '8px 13px',
                       fontSize: '14px',
                       borderRadius: '5px',
-                      margin: '10px 0',
+                      marginBottom: '10px',
                     }}
                   >
                     {detailMovies.genre}
@@ -87,7 +88,7 @@ const DetailMovies = () => {
                   <h2
                     style={{
                       color: 'black',
-                      fontSize: '16px',
+                      fontSize: '14px',
                       textAlign: 'justify',
                       lineHeight: '2rem',
                       margin: '10px 0',
@@ -95,28 +96,37 @@ const DetailMovies = () => {
                   >
                     {detailMovies.description}
                   </h2>
-                  <h2
+                  <div
                     style={{
-                      color: 'black',
-                      fontSize: '16px',
-                      textAlign: 'justify',
-                      lineHeight: '2rem',
-                      margin: '10px 0',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      gap: '10px',
                     }}
                   >
-                    Duration : <b>{detailMovies.duration} Minutes</b>
-                  </h2>
-                  <h2
-                    style={{
-                      color: 'black',
-                      fontSize: '16px',
-                      textAlign: 'justify',
-                      lineHeight: '2rem',
-                      margin: '10px 0',
-                    }}
-                  >
-                    Rating : <b>{detailMovies.rating}/10</b>
-                  </h2>
+                    <h2
+                      style={{
+                        color: 'black',
+                        fontSize: '14px',
+                        textAlign: 'justify',
+                        lineHeight: '2rem',
+                        margin: '10px 0',
+                      }}
+                    >
+                      <BsClockFill /> <b>{detailMovies.duration} Minutes</b>
+                    </h2>
+                    <h2
+                      style={{
+                        color: 'black',
+                        fontSize: '14px',
+                        textAlign: 'justify',
+                        lineHeight: '2rem',
+                        margin: '10px 0',
+                      }}
+                    >
+                      <BsStarFill style={{ color: 'yellow' }} />{' '}
+                      <b>{detailMovies.rating}/10</b>
+                    </h2>
+                  </div>
                   <h2
                     style={{
                       color: 'black',
@@ -126,7 +136,7 @@ const DetailMovies = () => {
                       margin: '10px 0',
                     }}
                   >
-                    Review : "<i>{detailMovies.review}</i>"
+                    <b>Review Movies </b> <br />"<i>{detailMovies.review}</i>"
                   </h2>
                 </div>
               </div>

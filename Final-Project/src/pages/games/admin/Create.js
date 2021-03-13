@@ -103,7 +103,7 @@ const Create = () => {
 
   return (
     <>
-      <div style={{ margin: '20px 0px' }}>
+      <div style={{ marginBottom: '20px' }}>
         <Row>
           <Col sm="12">
             <Card body>

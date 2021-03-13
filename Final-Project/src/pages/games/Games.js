@@ -39,7 +39,7 @@ class Games extends Component {
   render() {
     return (
       <>
-        <div style={{ margin: '20px 0' }}>
+        <div style={{ marginBottom: '20px' }}>
           <h1 style={{ fontSize: '24px' }}>Games</h1>
         </div>
         <Row>

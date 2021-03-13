@@ -71,7 +71,7 @@ const Home = () => {
     <>
       <div
         style={{
-          margin: '20px 0',
+          marginBottom: '20px',
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',

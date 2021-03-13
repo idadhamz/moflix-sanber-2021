@@ -1,0 +1,13 @@
+.buttonHead {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.buttonHead:hover {
+  background: none;
+}
+
+*:focus {
+  outline: 0 !important;
+}

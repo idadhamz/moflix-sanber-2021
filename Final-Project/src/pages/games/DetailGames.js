@@ -35,12 +35,12 @@ const DetailGames = () => {
           <Col xs={12} md={12} lg={12}>
             <Spinner
               color="primary"
-              style={{ margin: '20px 0', width: '3rem', height: '3rem' }}
+              style={{ width: '3rem', height: '3rem' }}
             />
           </Col>
         ) : (
           detailGames !== null && (
-            <Col xs={12} md={12} lg={12} style={{ margin: '30px 0px' }}>
+            <Col xs={12} md={12} lg={12}>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <img
                   src={detailGames.image_url}
@@ -55,7 +55,7 @@ const DetailGames = () => {
                   style={{
                     width: '100%',
                     height: '100%',
-                    padding: '5%',
+                    padding: '0px 5%',
                   }}
                 >
                   <h2
@@ -93,17 +93,17 @@ const DetailGames = () => {
                     <span>
                       Multi Player :{' '}
                       {detailGames.multiplayer == 1 ? (
-                        <Badge color="primary">Bisa</Badge>
+                        <Badge color="primary">Yes</Badge>
                       ) : (
-                        <Badge color="danger">Tidak Bisa</Badge>
+                        <Badge color="danger">No</Badge>
                       )}
                     </span>
                     <span style={{ margin: '0 10px' }}>
                       Single Player :{' '}
                       {detailGames.singlePlayer == 1 ? (
-                        <Badge color="primary">Bisa</Badge>
+                        <Badge color="primary">Yes</Badge>
                       ) : (
-                        <Badge color="danger">Tidak Bisa</Badge>
+                        <Badge color="danger">No</Badge>
                       )}
                     </span>
                   </p>

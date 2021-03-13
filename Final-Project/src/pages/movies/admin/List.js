@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
+import './List.css'
 
 import {
   Row,
@@ -426,7 +427,7 @@ const List = () => {
 
   return (
     <>
-      <div style={{ margin: '20px 0px' }}>
+      <div style={{ marginBottom: '20px' }}>
         <div>
           <Filter />
         </div>
@@ -476,10 +477,10 @@ const List = () => {
               <tr>
                 <th>No</th>
                 <th>Cover</th>
-                <th>
+                <th width="125px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="title"
                   >
                     Title {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
@@ -488,47 +489,47 @@ const List = () => {
                 <th width="200px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="description"
                   >
                     Description{' '}
                     {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th width="115px">
+                <th width="110px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="year"
                   >
                     Year
                     {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th width="125px">
+                <th width="120px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="duration"
                   >
                     Duration
                     {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th>
+                <th width="110px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="genre"
                   >
                     Genre
                     {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th width="115px">
+                <th width="110px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="rating"
                   >
                     Rating
@@ -538,7 +539,7 @@ const List = () => {
                 <th width="200px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="review"
                   >
                     Review

@@ -14,12 +14,26 @@ const Main = () => {
   return (
     <>
       <Router>
-        <Header />
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          {user && <Sidebar />}
-          <Section />
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh',
+          }}
+        >
+          <Header />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              flex: 1,
+            }}
+          >
+            {user && <Sidebar />}
+            <Section />
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </Router>
     </>
   )

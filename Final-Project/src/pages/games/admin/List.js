@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
+import './List.css'
 
 import {
   Row,
@@ -453,7 +454,7 @@ const List = () => {
 
   return (
     <>
-      <div style={{ margin: '20px 0px' }}>
+      <div style={{ marginBottom: '20px' }}>
         <div>
           <Filter />
         </div>
@@ -506,7 +507,7 @@ const List = () => {
                 <th width="115px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="name"
                   >
                     Name {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
@@ -515,7 +516,7 @@ const List = () => {
                 <th width="115px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="genre"
                   >
                     Genre {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
@@ -524,7 +525,7 @@ const List = () => {
                 <th width="150px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="platform"
                   >
                     Platform {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
@@ -533,26 +534,26 @@ const List = () => {
                 <th width="100px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="release"
                   >
                     Release {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th width="135px">
+                <th width="150px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="multiPlayer"
                   >
                     Multi Player{' '}
                     {sort == 'asc' ? <BsArrowDown /> : <BsArrowUp />}
                   </Button>
                 </th>
-                <th width="135px">
+                <th width="150px">
                   <Button
                     onClick={sortTable}
-                    style={{ cursor: 'pointer', border: 'none' }}
+                    className="buttonHead"
                     value="singlePlayer"
                   >
                     Single Player{' '}

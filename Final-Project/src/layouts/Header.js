@@ -7,6 +7,11 @@ import { AppContext } from '../context/AppContext'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from 'antd'
 
+import { BsFillHouseDoorFill, BsFilm } from 'react-icons/bs'
+import { CgGames } from 'react-icons/cg'
+import { FiLogIn } from 'react-icons/fi'
+import { IoCreate } from 'react-icons/io5'
+
 const Header = () => {
   const [user] = useContext(AppContext)
 
@@ -27,7 +32,7 @@ const Header = () => {
                   to="/"
                   className={location.pathname === '/' ? 'link active' : 'link'}
                 >
-                  Home
+                  <BsFillHouseDoorFill /> Home
                 </Link>
               </li>
               <li>
@@ -37,7 +42,7 @@ const Header = () => {
                     location.pathname === '/movies' ? 'link active' : 'link'
                   }
                 >
-                  Movies
+                  <BsFilm /> Movies
                 </Link>
               </li>
               <li>
@@ -47,7 +52,7 @@ const Header = () => {
                     location.pathname === '/games' ? 'link active' : 'link'
                   }
                 >
-                  Games
+                  <CgGames /> Games
                 </Link>
               </li>
             </div>
@@ -62,6 +67,7 @@ const Header = () => {
                       backgroundColor: 'transparent',
                     }}
                   >
+                    <FiLogIn style={{ marginRight: '5px' }} />
                     Login
                   </Button>
                 </Link>
@@ -73,7 +79,7 @@ const Header = () => {
                       color: 'white',
                     }}
                   >
-                    Register
+                    <IoCreate style={{ marginRight: '5px' }} /> Register
                   </Button>
                 </Link>
               </>
