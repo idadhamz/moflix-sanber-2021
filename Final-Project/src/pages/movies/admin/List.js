@@ -250,7 +250,11 @@ const List = () => {
   let updateMovies =
     movies !== null
       ? movies.filter((movie) => {
-          return movie.title.toLowerCase().includes(search.toLocaleLowerCase())
+          if (movie.title !== null) {
+            return movie.title
+              .toLowerCase()
+              .includes(search.toLocaleLowerCase())
+          }
         }, [])
       : []
 

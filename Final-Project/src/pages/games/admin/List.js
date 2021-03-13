@@ -286,7 +286,9 @@ const List = () => {
   let updateGames =
     games !== null
       ? games.filter((game) => {
-          return game.name.toLowerCase().includes(search.toLocaleLowerCase())
+          if (game.name !== null) {
+            return game.name.toLowerCase().includes(search.toLocaleLowerCase())
+          }
         }, [])
       : []
 
